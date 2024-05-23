@@ -1,7 +1,6 @@
 // Created by Shaunak Vaghasia
 
 import 'package:flutter/material.dart';
-import 'package:lifty/Home/ui/home.dart';
 import 'package:lifty/auth/adapter/auth_adapter.dart';
 import 'package:lifty/auth/core/auth_core.dart';
 import 'package:lifty/auth/core/auth_core_api.dart';
@@ -12,6 +11,7 @@ import 'package:lifty/nav_bar/core/nav_bar_core_api.dart';
 import 'package:lifty/nav_bar/ui/nav_bar.dart';
 import 'package:lifty/nutrition/ui/nutrition.dart';
 import 'package:lifty/profile/ui/profile.dart';
+import 'package:lifty/workouts/ui/workouts.dart';
 
 class Lifty extends StatelessWidget {
   Lifty({super.key}) {
@@ -47,7 +47,7 @@ class Lifty extends StatelessWidget {
                       navBarAdapter: _navBarAdapter,
                     ),
                     body: <Widget>[
-                      const Home(),
+                      const Workouts(),
                       const Nutrition(),
                       Profile(authCore: _authCore),
                     ][bottomBarIndex]))
