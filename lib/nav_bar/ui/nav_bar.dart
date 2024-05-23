@@ -2,14 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:lifty/nav_bar/adapter/nav_bar_adapter.dart';
-import 'package:lifty/nav_bar/core/nav_bar_core.dart';
 import 'package:lifty/nav_bar/core/nav_bar_core_api.dart';
 
 class NavBar extends StatelessWidget {
-  NavBar({super.key});
+  const NavBar({super.key, required this.navBarCore, required this.navBarAdapter});
 
-  final NavBarCoreApi navBarCore = NavBarCore();
-  late final NavBarAdapter navBarAdapter = NavBarAdapter(navBarCore);
+  final NavBarCoreApi navBarCore;
+  final NavBarAdapter navBarAdapter;
 
   @override
   Widget build(BuildContext context) {

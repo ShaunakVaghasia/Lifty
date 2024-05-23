@@ -6,6 +6,9 @@ import 'package:lifty/auth/adapter/auth_adapter.dart';
 import 'package:lifty/auth/core/auth_core.dart';
 import 'package:lifty/auth/core/auth_core_api.dart';
 import 'package:lifty/auth/ui/login.dart';
+import 'package:lifty/nav_bar/adapter/nav_bar_adapter.dart';
+import 'package:lifty/nav_bar/core/nav_bar_core.dart';
+import 'package:lifty/nav_bar/core/nav_bar_core_api.dart';
 import 'package:lifty/nav_bar/ui/nav_bar.dart';
 
 class Lifty extends StatelessWidget {
@@ -16,6 +19,9 @@ class Lifty extends StatelessWidget {
 
   late final AuthCoreApi _authCore;
   late final AuthAdapter _authAdapter;
+
+  final NavBarCoreApi _navBarCore = NavBarCore();
+  late final NavBarAdapter _navBarAdapter = NavBarAdapter(_navBarCore);
 
   static const _appName = 'Lifty';
 
@@ -31,7 +37,17 @@ class Lifty extends StatelessWidget {
       home: ValueListenableBuilder(
         valueListenable: _authAdapter.signedInNotifier,
         builder: (context, bool signedIn, child) => signedIn
-            ? Scaffold(bottomNavigationBar: NavBar(), body: Home(authCore: _authCore))
+            ? ValueListenableBuilder(
+                valueListenable: _navBarAdapter.bottomBarIndexNotifier,
+                builder: (context, int bottomBarIndex, child) => Scaffold(
+                    bottomNavigationBar: NavBar(
+                      navBarCore: _navBarCore,
+                      navBarAdapter: _navBarAdapter,
+                    ),
+                    body: <Widget>[
+                      Container(),
+                      Home(authCore: _authCore),
+                    ][bottomBarIndex]))
             : Scaffold(body: Login(authCore: _authCore, authAdapter: _authAdapter)),
       ),
     );
