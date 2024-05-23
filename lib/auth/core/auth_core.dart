@@ -59,4 +59,7 @@ class AuthCore implements AuthCoreApi {
       }
     }
   }
+
+  @override
+  Future<void> signOut() async => await FirebaseAuth.instance.signOut();
 }

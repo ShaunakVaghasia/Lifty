@@ -8,4 +8,5 @@ abstract class AuthCoreApi {
   /// User Authentication and Creation
   Future<void> createUserWithEmailAndPassword(String emailAddress, String password);
   Future<void> signInWithEmailAndPassword(String emailAddress, String password);
+  Future<void> signOut();
 }
