@@ -5,28 +5,35 @@ import 'package:flutter/material.dart';
 class Login extends StatelessWidget {
   const Login({super.key});
 
+  static const double _buttonHeight = 60;
+  static const double _buttonWidth = 300;
+  static const SizedBox _separator = SizedBox(height: 20);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SizedBox(
-          height: 40,
-          width: 200,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text('Login'),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: _buttonHeight,
+            width: _buttonWidth,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text('Login'),
+            ),
           ),
-        ),
-        SizedBox(
-          height: 40,
-          width: 200,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text('Register'),
-          ),
-        )
-      ],
+          _separator,
+          SizedBox(
+            height: _buttonHeight,
+            width: _buttonWidth,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text('Register'),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
