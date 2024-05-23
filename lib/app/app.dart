@@ -6,7 +6,7 @@ import 'package:lifty/auth/adapter/auth_adapter.dart';
 import 'package:lifty/auth/core/auth_core.dart';
 import 'package:lifty/auth/core/auth_core_api.dart';
 import 'package:lifty/auth/ui/login.dart';
-import 'package:lifty/nav_bar/nav_bar.dart';
+import 'package:lifty/nav_bar/ui/nav_bar.dart';
 
 class Lifty extends StatelessWidget {
   Lifty({super.key}) {
