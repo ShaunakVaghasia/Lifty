@@ -20,6 +20,26 @@ class Login extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const SizedBox(
+            height: _buttonHeight,
+            width: _buttonWidth,
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+              ),
+            ),
+          ),
+          _separator,
+          const SizedBox(
+            height: _buttonHeight,
+            width: _buttonWidth,
+            child: TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+              ),
+            ),
+          ),
           SizedBox(
             height: _buttonHeight,
             width: _buttonWidth,
