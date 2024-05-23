@@ -19,10 +19,10 @@ class AuthCore implements AuthCoreApi {
   void isUserSignedIn() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!'); // Debug.
+        // print('User is currently signed out!'); // Debug.
         _onChangeSignedIn(false);
       } else {
-        print('User is signed in!'); // Debug.
+        // print('User is signed in!'); // Debug.
         _onChangeSignedIn(true);
       }
     });
@@ -37,9 +37,9 @@ class AuthCore implements AuthCoreApi {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        // print('The password provided is too weak.'); // Debug.
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        // print('The account already exists for that email.'); // Debug.
       }
     } catch (e) {
       print(e);
@@ -52,9 +52,9 @@ class AuthCore implements AuthCoreApi {
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailAddress, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        // print('No user found for that email.'); // Debug.
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        // print('Wrong password provided for that user.'); // Debug.
       }
     }
   }
