@@ -49,8 +49,8 @@ class Login extends StatelessWidget {
             height: _buttonHeight,
             width: _buttonWidth,
             child: ElevatedButton(
-              onPressed: () =>
-                  authCore.signInWithEmailAndPassword(emailController.text.trim(), passwordController.text.trim()),
+              onPressed: () async => await authCore.signInWithEmailAndPassword(
+                  emailController.text.trim(), passwordController.text.trim()),
               child: const Text('Login'),
             ),
           ),
@@ -59,8 +59,8 @@ class Login extends StatelessWidget {
             height: _buttonHeight,
             width: _buttonWidth,
             child: ElevatedButton(
-              onPressed: () =>
-                  authCore.createUserWithEmailAndPassword(emailController.text.trim(), passwordController.text.trim()),
+              onPressed: () async => await authCore.createUserWithEmailAndPassword(
+                  emailController.text.trim(), passwordController.text.trim()),
               child: const Text('Register'),
             ),
           )
