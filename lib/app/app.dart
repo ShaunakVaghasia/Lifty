@@ -41,14 +41,16 @@ class Lifty extends StatelessWidget {
             ? ValueListenableBuilder(
                 valueListenable: _navBarAdapter.bottomBarIndexNotifier,
                 builder: (context, int bottomBarIndex, child) => Scaffold(
-                    bottomNavigationBar: NavBar(
-                      navBarCore: _navBarCore,
-                      navBarAdapter: _navBarAdapter,
-                    ),
-                    body: <Widget>[
-                      const Home(),
-                      Profile(authCore: _authCore),
-                    ][bottomBarIndex]))
+                  bottomNavigationBar: NavBar(
+                    navBarCore: _navBarCore,
+                    navBarAdapter: _navBarAdapter,
+                  ),
+                  body: <Widget>[
+                    const Home(),
+                    Profile(authCore: _authCore),
+                  ][bottomBarIndex],
+                ),
+              )
             : Scaffold(body: Login(authCore: _authCore, authAdapter: _authAdapter)),
       ),
     );
