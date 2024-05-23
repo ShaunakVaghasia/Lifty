@@ -1,5 +1,6 @@
 // Created by Shaunak Vaghasia
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lifty/auth/ui/login.dart';
 
@@ -7,6 +8,20 @@ class Lifty extends StatelessWidget {
   const Lifty({super.key});
 
   static const _appName = 'Lifty';
+
+  bool userSignedIn() {
+    bool signedIn = false;
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+        signedIn = false;
+      } else {
+        print('User is signed in!');
+        signedIn = true;
+      }
+    });
+    return signedIn;
+  }
 
   // This widget is the root of your application.
   @override
@@ -32,7 +47,7 @@ class Lifty extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: const Scaffold(body: Login()),
+      home: Scaffold(body: userSignedIn() ? Container() : const Login()),
     );
   }
 }
