@@ -12,14 +12,18 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      selectedIndex: navBarAdapter.bottomBarIndexNotifier.value,
-      onDestinationSelected: (index) => navBarCore.changeBottomBarIndex(index),
-      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-      destinations: const [
-        NavigationDestination(icon: Icon(Icons.fitness_center_rounded), label: 'Workouts'),
-        NavigationDestination(icon: Icon(Icons.account_circle_sharp), label: 'Profile'),
-      ],
+    return ValueListenableBuilder(
+      valueListenable: navBarAdapter.bottomBarIndexNotifier,
+      builder: (context, int bottomBarIndex, child) => NavigationBar(
+        selectedIndex: bottomBarIndex,
+        onDestinationSelected: (index) => navBarCore.changeBottomBarIndex(index),
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.fitness_center_rounded), label: 'Workouts'),
+          NavigationDestination(icon: Icon(Icons.food_bank_rounded), label: 'Nutrition'),
+          NavigationDestination(icon: Icon(Icons.account_circle_sharp), label: 'Profile'),
+        ],
+      ),
     );
   }
 }
