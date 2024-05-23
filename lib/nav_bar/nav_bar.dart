@@ -5,6 +5,11 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return NavigationBar(
+      destinations: const [
+        NavigationDestination(icon: Icon(Icons.fitness_center_rounded), label: 'Workouts'),
+        NavigationDestination(icon: Icon(Icons.account_circle_sharp), label: 'Profile'),
+      ],
+    );
   }
 }
