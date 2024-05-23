@@ -31,7 +31,7 @@ class Lifty extends StatelessWidget {
       home: ValueListenableBuilder(
         valueListenable: _authAdapter.signedInNotifier,
         builder: (context, bool signedIn, child) => signedIn
-            ? Scaffold(bottomNavigationBar: const NavBar(), body: Home(authCore: _authCore))
+            ? Scaffold(bottomNavigationBar: NavBar(), body: Home(authCore: _authCore))
             : Scaffold(body: Login(authCore: _authCore, authAdapter: _authAdapter)),
       ),
     );
