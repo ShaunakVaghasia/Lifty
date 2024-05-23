@@ -22,10 +22,10 @@ class AuthCore implements AuthCoreApi {
   void isUserSignedIn() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!');
+        print('User is currently signed out!'); // Debug.
         userSignedIn(false);
       } else {
-        print('User is signed in!');
+        print('User is signed in!'); // Debug.
         userSignedIn(true);
       }
     });
