@@ -31,10 +31,13 @@ class AuthCore implements AuthCoreApi {
   @override
   Future<void> createUserWithEmailAndPassword(String emailAddress, String password) async {
     try {
+      print(emailAddress);
+      print(password);
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
+      print(credential);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

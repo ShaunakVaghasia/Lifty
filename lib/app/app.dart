@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lifty/Home/ui/home.dart';
 import 'package:lifty/auth/adapter/auth_adapter.dart';
 import 'package:lifty/auth/core/auth_core.dart';
 import 'package:lifty/auth/core/auth_core_api.dart';
@@ -30,9 +31,8 @@ class Lifty extends StatelessWidget {
       home: Scaffold(
         body: ValueListenableBuilder(
           valueListenable: _authAdapter.signedInNotifier,
-          builder: (context, bool signedIn, child) => signedIn
-              ? const SizedBox(child: Text('User Signed In'))
-              : Login(authCore: _authCore, authAdapter: _authAdapter),
+          builder: (context, bool signedIn, child) =>
+              signedIn ? Home(authCore: _authCore) : Login(authCore: _authCore, authAdapter: _authAdapter),
         ),
       ),
     );

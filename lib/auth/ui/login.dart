@@ -5,7 +5,7 @@ import 'package:lifty/auth/adapter/auth_adapter.dart';
 import 'package:lifty/auth/core/auth_core_api.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key, required this.authCore, required this.authAdapter});
+  Login({super.key, required this.authCore, required this.authAdapter});
 
   final AuthCoreApi authCore;
   final AuthAdapter authAdapter;
@@ -14,28 +14,33 @@ class Login extends StatelessWidget {
   static const double _buttonWidth = 300;
   static const SizedBox _separator = SizedBox(height: 20);
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const SizedBox(
+          SizedBox(
             height: _buttonHeight,
             width: _buttonWidth,
             child: TextField(
-              decoration: InputDecoration(
+              controller: emailController,
+              decoration: const InputDecoration(
                 labelText: 'Email',
               ),
             ),
           ),
           _separator,
-          const SizedBox(
+          SizedBox(
             height: _buttonHeight,
             width: _buttonWidth,
             child: TextField(
+              controller: passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
               ),
             ),
@@ -44,7 +49,8 @@ class Login extends StatelessWidget {
             height: _buttonHeight,
             width: _buttonWidth,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () =>
+                  authCore.signInWithEmailAndPassword(emailController.text.trim(), passwordController.text.trim()),
               child: const Text('Login'),
             ),
           ),
@@ -53,7 +59,8 @@ class Login extends StatelessWidget {
             height: _buttonHeight,
             width: _buttonWidth,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () =>
+                  authCore.createUserWithEmailAndPassword(emailController.text.trim(), passwordController.text.trim()),
               child: const Text('Register'),
             ),
           )
