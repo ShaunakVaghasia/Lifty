@@ -1,6 +1,5 @@
 // Created by Shaunak Vaghasia
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lifty/Home/ui/home.dart';
 import 'package:lifty/auth/adapter/auth_adapter.dart';
