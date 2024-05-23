@@ -7,6 +7,37 @@ class Workouts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Stack(
+      children: [
+        ListView(
+          children: <Widget>[
+            Container(
+              height: 50,
+              width: 30,
+              color: Colors.red,
+            ),
+            Container(
+              height: 50,
+              width: 30,
+              color: Colors.blue,
+            ),
+            Container(
+              height: 50,
+              width: 30,
+              color: Colors.teal,
+            ),
+          ],
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+              child: FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: () {},
+              )),
+        ),
+      ],
+    );
   }
 }
