@@ -7,6 +7,26 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        SizedBox(
+          height: 40,
+          width: 200,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Login'),
+          ),
+        ),
+        SizedBox(
+          height: 40,
+          width: 200,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Register'),
+          ),
+        )
+      ],
+    );
   }
 }
