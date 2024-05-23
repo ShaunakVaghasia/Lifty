@@ -2,26 +2,21 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lifty/auth/adapter/auth_adapter.dart';
+import 'package:lifty/auth/core/auth_core.dart';
+import 'package:lifty/auth/core/auth_core_api.dart';
 import 'package:lifty/auth/ui/login.dart';
 
 class Lifty extends StatelessWidget {
-  const Lifty({super.key});
+  Lifty({super.key}) {
+    _authCore = AuthCore();
+    _authAdapter = AuthAdapter(_authCore);
+  }
+
+  late final AuthCoreApi _authCore;
+  late final AuthAdapter _authAdapter;
 
   static const _appName = 'Lifty';
-
-  bool userSignedIn() {
-    bool signedIn = false;
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-        signedIn = false;
-      } else {
-        print('User is signed in!');
-        signedIn = true;
-      }
-    });
-    return signedIn;
-  }
 
   // This widget is the root of your application.
   @override
@@ -47,7 +42,12 @@ class Lifty extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: Scaffold(body: userSignedIn() ? Container() : const Login()),
+      home: Scaffold(
+        body: ValueListenableBuilder(
+          valueListenable: _authAdapter.signedInNotifier,
+          builder: (context, bool signedIn, child) => signedIn ? Container() : Login(authCore: _authCore, authAdapter: _authAdapter),
+        ),
+      ),
     );
   }
 }

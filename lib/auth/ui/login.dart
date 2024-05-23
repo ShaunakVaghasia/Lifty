@@ -1,9 +1,14 @@
 // Created by Shaunak Vaghasia
 
 import 'package:flutter/material.dart';
+import 'package:lifty/auth/adapter/auth_adapter.dart';
+import 'package:lifty/auth/core/auth_core_api.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  const Login({super.key, required this.authCore, required this.authAdapter});
+
+  final AuthCoreApi authCore;
+  final AuthAdapter authAdapter;
 
   static const double _buttonHeight = 60;
   static const double _buttonWidth = 300;
