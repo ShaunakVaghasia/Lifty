@@ -27,12 +27,18 @@ class Lifty extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        body: ValueListenableBuilder(
-          valueListenable: _authAdapter.signedInNotifier,
-          builder: (context, bool signedIn, child) =>
-              signedIn ? Home(authCore: _authCore) : Login(authCore: _authCore, authAdapter: _authAdapter),
-        ),
+      home: ValueListenableBuilder(
+        valueListenable: _authAdapter.signedInNotifier,
+        builder: (context, bool signedIn, child) => signedIn
+            ? Scaffold(
+                bottomNavigationBar: NavigationBar(
+                  destinations: const [
+                    NavigationDestination(icon: Icon(Icons.fitness_center_rounded), label: 'Workouts'),
+                    NavigationDestination(icon: Icon(Icons.account_circle_sharp), label: 'Profile'),
+                  ],
+                ),
+                body: Home(authCore: _authCore))
+            : Scaffold(body: Login(authCore: _authCore, authAdapter: _authAdapter)),
       ),
     );
   }
