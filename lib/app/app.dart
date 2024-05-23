@@ -10,6 +10,7 @@ import 'package:lifty/nav_bar/adapter/nav_bar_adapter.dart';
 import 'package:lifty/nav_bar/core/nav_bar_core.dart';
 import 'package:lifty/nav_bar/core/nav_bar_core_api.dart';
 import 'package:lifty/nav_bar/ui/nav_bar.dart';
+import 'package:lifty/profile/ui/profile.dart';
 
 class Lifty extends StatelessWidget {
   Lifty({super.key}) {
@@ -45,8 +46,8 @@ class Lifty extends StatelessWidget {
                       navBarAdapter: _navBarAdapter,
                     ),
                     body: <Widget>[
-                      Container(),
-                      Home(authCore: _authCore),
+                      const Home(),
+                      Profile(authCore: _authCore),
                     ][bottomBarIndex]))
             : Scaffold(body: Login(authCore: _authCore, authAdapter: _authAdapter)),
       ),
