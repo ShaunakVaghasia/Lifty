@@ -30,3 +30,5 @@ ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 lib/firebase_options.dart
 firebase.json
+macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+macos/Flutter/ephemeral/flutter_export_environment.sh
