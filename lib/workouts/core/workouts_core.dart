@@ -11,9 +11,9 @@ class WorkoutsCore implements WorkoutsCoreApi {
     init();
   }
 
-  void init() async => await loadAllWorkouts();
-
   final StorageApi storage;
+
+  void init() async => await loadAllWorkouts();
 
   final List<WorkoutInfo> _workouts = [];
   @override
@@ -38,20 +38,22 @@ class WorkoutsCore implements WorkoutsCoreApi {
     return null;
   }
 
+  Function(WorkoutInfo workout) _onChangeWorkout = (value) {};
+  @override
+  void onChangeWorkout(Function(WorkoutInfo workout) callback) => _onChangeWorkout = callback;
   @override
   Future<void> createWorkout(Map<String, List> exercises, String name, List<String> tags) async {
     final id = const Uuid().v4(); // Randomly generated id.
     try {
-      await storage.workouts.saveWorkout(
-        id,
-        WorkoutInfo(
-          date: Timestamp.now(),
-          exercises: exercises,
-          id: id,
-          name: name,
-          tags: tags,
-        ),
+      final workout = WorkoutInfo(
+        date: Timestamp.now(),
+        exercises: exercises,
+        id: id,
+        name: name,
+        tags: tags,
       );
+      await storage.workouts.saveWorkout(id, workout);
+      _onChangeWorkout(workout);
     } catch (e) {
       // TODO:  Error handling.
       print('Error saving workout $e');
