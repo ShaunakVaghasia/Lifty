@@ -15,18 +15,18 @@ class WorkoutInfo {
         );
 
   WorkoutInfo({
-    this.date,
-    this.exercises,
-    this.id,
-    this.name,
-    this.tags,
+    required this.date,
+    required this.exercises,
+    required this.id,
+    required this.name,
+    required this.tags,
   });
 
-  Timestamp? date;
-  Map? exercises;
-  String? id;
-  String? name;
-  List? tags;
+  Timestamp date;
+  Map exercises;
+  String id;
+  String name;
+  List tags;
 
   factory WorkoutInfo.fromMap(Map<String, dynamic> json) {
     return WorkoutInfo(
