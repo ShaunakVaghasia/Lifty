@@ -7,4 +7,7 @@ class WorkoutsCore implements WorkoutsCoreApi {
   WorkoutsCore({required this.storage});
 
   final StorageApi storage;
+
+  @override
+  Future<void> loadAllWorkouts() async => await storage.workouts.loadAllWorkouts();
 }
