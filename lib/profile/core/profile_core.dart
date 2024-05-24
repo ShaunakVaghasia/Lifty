@@ -16,6 +16,7 @@ class ProfileCore implements ProfileCoreApi {
 
   @override
   bool get editMode => _editMode;
+  Function(bool editMode) _onChangeEditMode = (value) {};
   @override
   void onChangeEditMode(Function(bool editMode) callback) => _onChangeEditMode = callback;
 
@@ -26,8 +27,6 @@ class ProfileCore implements ProfileCoreApi {
   Function(ProfileInfo profile) _onChangeProfile = (value) {};
   @override
   void onChangeProfile(Function(ProfileInfo) callback) => _onChangeProfile = callback;
-
-  Function(bool editMode) _onChangeEditMode = (value) {};
 
   @override
   Future<ProfileInfo?> loadProfile() async {
