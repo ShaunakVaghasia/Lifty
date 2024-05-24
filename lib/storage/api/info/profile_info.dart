@@ -8,7 +8,7 @@ class ProfileInfo {
   String firstName;
   String lastName;
   String email;
-  DateTime birthdate;
+  Timestamp birthdate;
   String? gender;
   int? height;
   int? weight;
