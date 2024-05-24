@@ -14,7 +14,5 @@ void main() async {
 
   StorageApi storage = createStorage();
 
-  runApp(Lifty(
-    storage: storage,
-  ));
+  runApp(Lifty(storage: storage));
 }
