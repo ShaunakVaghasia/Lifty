@@ -5,7 +5,11 @@ import 'package:lifty/storage/api/storage_api.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
 
 class WorkoutsCore implements WorkoutsCoreApi {
-  WorkoutsCore({required this.storage});
+  WorkoutsCore({required this.storage}) {
+    init();
+  }
+
+  void init() async => await loadAllWorkouts();
 
   final StorageApi storage;
 
