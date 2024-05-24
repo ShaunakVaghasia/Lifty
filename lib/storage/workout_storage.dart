@@ -4,6 +4,8 @@ import 'package:lifty/storage/storage_path.dart';
 
 class WorkoutStorage implements WorkoutsStorageApi {
   final _pathHelper = StoragePath();
+
+  @override
   Future<List<WorkoutInfo>?> loadAllWorkouts() async {
     final List<WorkoutInfo> allWorkouts = [];
     try {
