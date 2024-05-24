@@ -32,7 +32,14 @@ class Workouts extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
             child: FloatingActionButton(
               child: const Icon(Icons.add),
-              onPressed: () {},
+              onPressed: () async {
+                await workoutsCore.createWorkout(
+                    {
+                      'bench': [3, 2]
+                    },
+                    'workout 2',
+                    ['tags', 'tags']);
+              },
             ),
           ),
         ),
