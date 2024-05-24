@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lifty/storage/api/info/workout_info.dart';
 import 'package:lifty/workouts/adapter/workouts_adapter.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
+import 'package:lifty/workouts/ui/workout_settings.dart';
 
 class Workouts extends StatelessWidget {
   const Workouts({super.key, required this.workoutsCore, required this.workoutsAdapter});
@@ -22,7 +23,7 @@ class Workouts extends StatelessWidget {
               itemBuilder: (context, index) => Card(
                     elevation: 10,
                     child: ListTile(
-                      leading: Text((workouts[index].name)),
+                      leading: Text(workouts[index].name),
                     ),
                   )),
         ),
@@ -31,16 +32,17 @@ class Workouts extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
             child: FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                await workoutsCore.createWorkout(
-                    {
-                      'bench': [3, 2]
-                    },
-                    'workout 2',
-                    ['tags', 'tags']);
-              },
-            ),
+                child: const Icon(Icons.add),
+                onPressed: () =>
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const WorkoutSettings()))
+                // await workoutsCore.createWorkout(
+                //     {
+                //       'bench': [3, 2]
+                //     },
+                //     'workout 2',
+                //     ['tags', 'tags']);
+
+                ),
           ),
         ),
       ],

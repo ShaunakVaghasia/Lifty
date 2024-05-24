@@ -5,6 +5,11 @@ class WorkoutSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Create a Workout'),
+      ),
+      body: Container(),
+    );
   }
 }
