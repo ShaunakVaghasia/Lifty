@@ -40,7 +40,11 @@ class WorkoutsCore implements WorkoutsCoreApi {
 
   Function(WorkoutInfo workout) _onChangeWorkout = (value) {};
   @override
-  void onChangeWorkout(Function(WorkoutInfo workout) callback) => _onChangeWorkout = callback;
+  void onChangeWorkout(Function(WorkoutInfo workout) callback) {
+    print(_workouts);
+    _onChangeWorkout = callback;
+  }
+
   @override
   Future<void> createWorkout(Map<String, List> exercises, String name, List<String> tags) async {
     final id = const Uuid().v4(); // Randomly generated id.
