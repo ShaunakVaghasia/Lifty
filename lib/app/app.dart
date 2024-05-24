@@ -65,7 +65,7 @@ class Lifty extends StatelessWidget {
                           workoutsCore: _workoutsCore,
                           workoutsAdapter: _workoutsAdapter),
                       const Nutrition(),
-                      Profile(authCore: _authCore),
+                      Profile(authCore: _authCore, profileCore: _profileCore),
                     ][bottomBarIndex]))
             : Scaffold(
                 body: Login(authCore: _authCore, authAdapter: _authAdapter)),

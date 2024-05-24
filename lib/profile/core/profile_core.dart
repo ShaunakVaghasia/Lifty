@@ -5,7 +5,11 @@ import 'package:lifty/storage/api/info/profile_info.dart';
 import 'package:lifty/storage/api/storage_api.dart';
 
 class ProfileCore implements ProfileCoreApi {
-  ProfileCore({required this.storage});
+  ProfileCore({required this.storage}) {
+    init();
+  }
+
+  void init() async => await loadProfile();
 
   final StorageApi storage;
   final bool _editMode = false;
@@ -33,6 +37,10 @@ class ProfileCore implements ProfileCoreApi {
       final value = await storage.profile.loadProfile();
       if (value != null) {
         _onChangeProfile(value);
+        print("Getting User Profile");
+        print("First Name: ${value.firstName}");
+        print("Last Name: ${value.lastName}");
+        print("Email: ${value.email}");
       }
       return value;
     } catch (e) {
