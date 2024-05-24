@@ -8,5 +8,17 @@ class ProfileStorage implements ProfileStorageApi {
   final _pathHelper = StoragePath();
 
   @override
-  Future<List<ProfileInfo>?> loadProfile() async {}
+  Future<ProfileInfo?> loadProfile() async {
+    try {
+      final snapshot = await _pathHelper.userPath().get();
+      final data = snapshot.data();
+      if (data is Map<String, dynamic>) {
+        return ProfileInfo.fromMap(data);
+      }
+      return null;
+    } catch (e) {
+      print('Error retrieving user profile: $e');
+      return null;
+    }
+  }
 }
