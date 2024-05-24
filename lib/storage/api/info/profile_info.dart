@@ -8,6 +8,7 @@ class ProfileInfo {
   String firstName;
   String lastName;
   String email;
+  DateTime birthdate;
   String? gender;
   int? height;
   int? weight;
@@ -20,6 +21,7 @@ class ProfileInfo {
       required this.firstName,
       required this.lastName,
       required this.email,
+      required this.birthdate,
       this.gender,
       this.height,
       this.weight,
@@ -33,6 +35,7 @@ class ProfileInfo {
             firstName: profileInfo.firstName,
             lastName: profileInfo.lastName,
             email: profileInfo.email,
+            birthdate: profileInfo.birthdate,
             gender: profileInfo.gender,
             height: profileInfo.height,
             weight: profileInfo.weight,
@@ -46,6 +49,7 @@ class ProfileInfo {
         firstName: json['firstName'],
         lastName: json['lastName'],
         email: json['email'],
+        birthdate: json['birthdate'],
         gender: json['gender'],
         height: json['height'],
         weight: json['weight'],
@@ -59,6 +63,7 @@ class ProfileInfo {
         'firstName': firstName,
         'lastName': lastName,
         'email': email,
+        'birthdate': birthdate,
         'gender': gender,
         'height': height,
         'weight': weight,
