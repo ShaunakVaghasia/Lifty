@@ -8,11 +8,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lifty/app/app.dart';
+import 'package:lifty/storage/api/storage_api.dart';
+import 'package:lifty/storage/core/storage.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    StorageApi storage = createStorage();
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Lifty());
+    await tester.pumpWidget(Lifty(storage: storage));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
