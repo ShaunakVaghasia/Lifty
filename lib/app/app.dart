@@ -10,6 +10,9 @@ import 'package:lifty/nav_bar/core/nav_bar_core.dart';
 import 'package:lifty/nav_bar/core/nav_bar_core_api.dart';
 import 'package:lifty/nav_bar/ui/nav_bar.dart';
 import 'package:lifty/nutrition/ui/nutrition.dart';
+import 'package:lifty/profile/adapter/profile_adapter.dart';
+import 'package:lifty/profile/core/profile_core.dart';
+import 'package:lifty/profile/core/profile_core_api.dart';
 import 'package:lifty/profile/ui/profile.dart';
 import 'package:lifty/storage/api/storage_api.dart';
 import 'package:lifty/workouts/adapter/workouts_adapter.dart';
@@ -29,6 +32,9 @@ class Lifty extends StatelessWidget {
 
   final NavBarCoreApi _navBarCore = NavBarCore();
   late final NavBarAdapter _navBarAdapter = NavBarAdapter(_navBarCore);
+
+  late final ProfileCoreApi _profileCore = ProfileCore(storage: storage);
+  late final ProfileAdapter _profileAdapter = ProfileAdapter(_profileCore);
 
   late final WorkoutsCoreApi _workoutsCore = WorkoutsCore(storage: storage);
   late final WorkoutsAdapter _workoutsAdapter = WorkoutsAdapter(_workoutsCore);
@@ -55,11 +61,14 @@ class Lifty extends StatelessWidget {
                       navBarAdapter: _navBarAdapter,
                     ),
                     body: <Widget>[
-                      Workouts(workoutsCore: _workoutsCore, workoutsAdapter: _workoutsAdapter),
+                      Workouts(
+                          workoutsCore: _workoutsCore,
+                          workoutsAdapter: _workoutsAdapter),
                       const Nutrition(),
                       Profile(authCore: _authCore),
                     ][bottomBarIndex]))
-            : Scaffold(body: Login(authCore: _authCore, authAdapter: _authAdapter)),
+            : Scaffold(
+                body: Login(authCore: _authCore, authAdapter: _authAdapter)),
       ),
     );
   }

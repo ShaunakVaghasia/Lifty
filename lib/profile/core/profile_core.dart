@@ -4,7 +4,11 @@ import 'package:lifty/profile/core/profile_core_api.dart';
 import 'package:lifty/storage/api/storage_api.dart';
 
 class ProfileCore implements ProfileCoreApi {
+  ProfileCore({required this.storage});
+
+  final StorageApi storage;
   final bool _editMode = false;
+
   @override
   bool get editMode => _editMode;
   @override
