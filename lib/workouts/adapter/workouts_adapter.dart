@@ -8,6 +8,8 @@ class WorkoutsAdapter {
   WorkoutsAdapter(WorkoutsCoreApi workoutsCore) {
     workoutsNotifier = ValueNotifier(workoutsCore.workouts);
     workoutsCore.onChangeWorkouts((workouts) => workoutsNotifier.value = workouts);
+    workoutsCore
+        .onChangeWorkout((workout) => workoutsNotifier.value = List.from(workoutsNotifier.value)..insert(0, workout));
   }
   late final ValueNotifier<List<WorkoutInfo>> workoutsNotifier;
 }
