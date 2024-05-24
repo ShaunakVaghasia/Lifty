@@ -1,9 +1,12 @@
 // Created by Shaunak Vaghasia
 
 import 'package:flutter/material.dart';
+import 'package:lifty/workouts/core/workouts_core_api.dart';
 
 class Workouts extends StatelessWidget {
-  const Workouts({super.key});
+  const Workouts({super.key, required this.workoutsCore});
+
+  final WorkoutsCoreApi workoutsCore;
 
   @override
   Widget build(BuildContext context) {
