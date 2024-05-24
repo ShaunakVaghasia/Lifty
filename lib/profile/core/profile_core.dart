@@ -42,6 +42,7 @@ class ProfileCore implements ProfileCoreApi {
       return value;
     } catch (e) {
       print('Error loading profile: $e');
+      return null;
     }
   }
 
