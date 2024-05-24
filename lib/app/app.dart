@@ -11,10 +11,11 @@ import 'package:lifty/nav_bar/core/nav_bar_core_api.dart';
 import 'package:lifty/nav_bar/ui/nav_bar.dart';
 import 'package:lifty/nutrition/ui/nutrition.dart';
 import 'package:lifty/profile/ui/profile.dart';
+import 'package:lifty/storage/api/storage_api.dart';
 import 'package:lifty/workouts/ui/workouts.dart';
 
 class Lifty extends StatelessWidget {
-  Lifty({super.key}) {
+  Lifty({super.key, required this.storage}) {
     _authCore = AuthCore();
     _authAdapter = AuthAdapter(_authCore);
   }
@@ -24,6 +25,8 @@ class Lifty extends StatelessWidget {
 
   final NavBarCoreApi _navBarCore = NavBarCore();
   late final NavBarAdapter _navBarAdapter = NavBarAdapter(_navBarCore);
+
+  final StorageApi storage;
 
   static const _appName = 'Lifty';
 
