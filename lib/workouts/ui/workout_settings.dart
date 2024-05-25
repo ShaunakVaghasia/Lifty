@@ -50,8 +50,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
         appBar: AppBar(
           elevation: 5,
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
-          leading: IconButton(
-              onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 30)),
+          leading: UiConstants.topBarBackButton(() => Navigator.pop(context)),
           title: const Text(AppStrings.createAWorkout),
         ),
         body: Padding(
