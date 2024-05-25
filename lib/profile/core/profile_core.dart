@@ -1,5 +1,6 @@
 // Created by Haris Rovcanin
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifty/profile/core/profile_core_api.dart';
 import 'package:lifty/storage/api/info/profile_info.dart';
 import 'package:lifty/storage/api/storage_api.dart';
@@ -50,7 +51,27 @@ class ProfileCore implements ProfileCoreApi {
 
   @override
   Future<void> updateProfile(String firstName, String lastName,
-      String emailAddress, DateTime birthdate, String? gender) async {}
+      String emailAddress, DateTime birthdate, String? gender) async {
+    final userId = storage.profile.getUserId();
+    try {
+      if (userId != null) {
+        final profile = ProfileInfo(
+            id: userId,
+            firstName: firstName,
+            lastName: lastName,
+            email: emailAddress,
+            birthdate: Timestamp.fromDate(birthdate),
+            gender: gender);
+        await storage.profile.saveProfile(profile);
+        _onChangeProfile(profile);
+      } else {
+        throw new Exception('NoUserIdFound');
+      }
+    } catch (e) {
+      print('Error occurred while saving profile: $e');
+    }
+  }
+
   @override
   Future<void> updateHeight(int height, String unit) async {}
   @override
