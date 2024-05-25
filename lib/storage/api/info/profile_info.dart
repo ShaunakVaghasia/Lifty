@@ -13,7 +13,8 @@ class ProfileInfo {
   int? height;
   int? weight;
   double? bmi;
-  String? unit;
+  String? heightUnit;
+  String? weightUnit;
   String? activityLevel;
 
   ProfileInfo(
@@ -26,7 +27,8 @@ class ProfileInfo {
       this.height,
       this.weight,
       this.bmi,
-      this.unit,
+      this.heightUnit,
+      this.weightUnit,
       this.activityLevel});
 
   ProfileInfo.clone(ProfileInfo profileInfo)
@@ -40,7 +42,8 @@ class ProfileInfo {
             height: profileInfo.height,
             weight: profileInfo.weight,
             bmi: profileInfo.bmi,
-            unit: profileInfo.unit,
+            heightUnit: profileInfo.heightUnit,
+            weightUnit: profileInfo.weightUnit,
             activityLevel: profileInfo.activityLevel);
 
   factory ProfileInfo.fromMap(Map<String, dynamic> json) {
@@ -54,7 +57,8 @@ class ProfileInfo {
         height: json['height'],
         weight: json['weight'],
         bmi: json['bmi'],
-        unit: json['unit'],
+        heightUnit: json['heightUnit'],
+        weightUnit: json['weightUnit'],
         activityLevel: json['activityLevel']);
   }
 
@@ -68,7 +72,8 @@ class ProfileInfo {
         'height': height,
         'weight': weight,
         'bmi': bmi,
-        'unit': unit,
+        'heightUnit': heightUnit,
+        'weightUnit': weightUnit,
         'activityLevel': activityLevel
       };
 
