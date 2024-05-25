@@ -4,16 +4,26 @@ import 'package:lifty/workouts/core/workouts_core_api.dart';
 
 // TODO: Absolute Spaghetti code. Need to change when Mock-ups are done.
 class WorkoutSettings extends StatefulWidget {
-  const WorkoutSettings({super.key, required this.workoutsCore});
+  const WorkoutSettings({
+    super.key,
+    required this.workoutsCore,
+    required this.updating,
+    this.name = '',
+    this.exercisesList,
+  });
 
   final WorkoutsCoreApi workoutsCore;
+
+  final bool updating;
+  final Map<String, List>? exercisesList;
+  final String name;
 
   @override
   State<WorkoutSettings> createState() => _WorkoutSettingsState();
 }
 
 class _WorkoutSettingsState extends State<WorkoutSettings> {
-  final Map<String, List> exercises = {};
+  late final Map<String, List> exercises = widget.exercisesList ?? {}; // If null, start at empty list
 
   // Controllers
   final TextEditingController nameController = TextEditingController();
