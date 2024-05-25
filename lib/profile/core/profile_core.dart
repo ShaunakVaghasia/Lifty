@@ -90,7 +90,22 @@ class ProfileCore implements ProfileCoreApi {
   }
 
   @override
-  Future<void> updateWeight(double weight, String unit) async {}
+  Future<void> updateWeight(double weight, String unit) async {
+    try {
+      final profile = await storage.profile.loadProfile();
+      if (profile != null) {
+        profile.weight = weight;
+        profile.weightUnit = unit;
+        await storage.profile.saveProfile(profile);
+        _onChangeProfile(profile);
+      } else {
+        throw new Exception('NoProfileFound');
+      }
+    } catch (e) {
+      print('Error occurred while updating user profile: $e');
+    }
+  }
+
   @override
   Future<void> updateActivityLevel(String activityLevel) async {}
 }
