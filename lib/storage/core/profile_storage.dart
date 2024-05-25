@@ -21,4 +21,22 @@ class ProfileStorage implements ProfileStorageApi {
       return null;
     }
   }
+
+  @override
+  Future<void> saveProfile(ProfileInfo profile) async {
+    try {
+      await _pathHelper.userPath().set(profile.profileInfoMap());
+    } catch (e) {
+      print('Error occurred while updating profile: $e');
+    }
+  }
+
+  @override
+  String? getUserId() {
+    try {
+      return _pathHelper.getCurrentUserId();
+    } catch (e) {
+      print('Error occurred while fetching user Id: $e');
+    }
+  }
 }
