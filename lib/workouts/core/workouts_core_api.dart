@@ -10,5 +10,5 @@ abstract class WorkoutsCoreApi {
 
   ///
   void onChangeWorkout(Function(WorkoutInfo workout) callback);
-  Future<void> createWorkout(Map<String, List> exercises, String name, List<String> tags);
+  Future<void> createWorkout(Map<String, dynamic> exercises, String name, List<String> tags);
 }

@@ -15,7 +15,7 @@ class WorkoutSettings extends StatefulWidget {
   final WorkoutsCoreApi workoutsCore;
 
   final bool updating;
-  final Map<String, List>? exercisesList;
+  final Map<String, dynamic>? exercisesList;
   final String name;
 
   @override
@@ -23,7 +23,7 @@ class WorkoutSettings extends StatefulWidget {
 }
 
 class _WorkoutSettingsState extends State<WorkoutSettings> {
-  late final Map<String, List> exercises = widget.exercisesList ?? {}; // If null, start at empty list
+  late final Map<String, dynamic> exercises = widget.exercisesList ?? {}; // If null, start at empty list
 
   // Controllers
   final TextEditingController nameController = TextEditingController();
@@ -167,6 +167,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
 
   @override
   Widget build(BuildContext context) {
+    print(exercises);
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(

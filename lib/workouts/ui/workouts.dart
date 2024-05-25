@@ -23,6 +23,22 @@ class Workouts extends StatelessWidget {
               itemBuilder: (context, index) => Card(
                     elevation: 10,
                     child: ListTile(
+                      onTap: () {
+                        final exercises = workouts[index].exercises;
+                        print('here');
+                        print(exercises.runtimeType);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WorkoutSettings(
+                              updating: true,
+                              workoutsCore: workoutsCore,
+                              name: workouts[index].name,
+                              exercisesList: exercises is Map<String, dynamic> ? exercises : null,
+                            ),
+                          ),
+                        );
+                      },
                       leading: Text(workouts[index].name),
                     ),
                   )),
@@ -34,7 +50,14 @@ class Workouts extends StatelessWidget {
             child: FloatingActionButton(
                 child: const Icon(Icons.add),
                 onPressed: () => Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => WorkoutSettings(workoutsCore: workoutsCore)))
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WorkoutSettings(
+                          updating: false,
+                          workoutsCore: workoutsCore,
+                        ),
+                      ),
+                    )
                 // await workoutsCore.createWorkout(
                 //     {
                 //       'bench': [3, 2]
