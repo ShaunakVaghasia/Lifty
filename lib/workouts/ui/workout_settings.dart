@@ -48,8 +48,8 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: ColorPalette.appBackgroundColor,
         appBar: AppBar(
-          elevation: 5,
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
+          elevation: UiConstants.topBarElevation,
+          shape: UiConstants.topBarRounding,
           leading: UiConstants.topBarBackButton(() => Navigator.pop(context)),
           title: const Text(AppStrings.createAWorkout),
         ),
@@ -64,7 +64,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                   label: const Text(AppStrings.nameYourWorkout),
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: UiConstants.roundedCorners,
                     borderSide: const BorderSide(color: Colors.white, width: 4),
                   ),
                 ),
@@ -73,13 +73,13 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
               Padding(padding: UiConstants.spacer(bottom: 10)),
               SingleChildScrollView(
                 child: Container(
-                  decoration:
-                      BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(20), color: Colors.white),
+                  decoration: BoxDecoration(
+                      border: Border.all(), borderRadius: UiConstants.roundedCorners, color: Colors.white),
                   height: MediaQuery.of(context).size.height * 0.55,
                   child: ListView.builder(
                     itemCount: exercises.length,
                     itemBuilder: (context, index) => Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      shape: RoundedRectangleBorder(borderRadius: UiConstants.roundedCorners),
                       elevation: 7,
                       child: ListTile(
                         title: Text(
@@ -120,7 +120,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                   label: const Text(AppStrings.tags),
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: UiConstants.roundedCorners,
                     borderSide: const BorderSide(color: Colors.white, width: 4),
                   ),
                 ),
