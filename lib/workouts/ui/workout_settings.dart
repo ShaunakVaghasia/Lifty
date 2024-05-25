@@ -111,9 +111,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  _addExercise();
-                },
+                onPressed: () => _addExercise(),
                 child: const Text(AppStrings.addExercise),
               ),
               TextField(
