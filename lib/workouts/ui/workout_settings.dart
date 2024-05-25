@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifty/app/theme/app_strings.dart';
 import 'package:lifty/app/theme/color_palette.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
 import 'package:lifty/workouts/ui/create_workout.dart';
@@ -49,7 +50,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
           elevation: 5,
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
           leading: const Icon(Icons.arrow_back_ios_new_rounded, size: 30),
-          title: const Text('Create a Workout'),
+          title: const Text(AppStrings.createAWorkout),
         ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -59,7 +60,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
               TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  label: const Text('Name your workout'),
+                  label: const Text(AppStrings.nameYourWorkout),
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
@@ -112,12 +113,12 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 onPressed: () {
                   _addExercise();
                 },
-                child: const Text('Add Exercise'),
+                child: const Text(AppStrings.addExercise),
               ),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  label: const Text('Tags'),
+                  label: const Text(AppStrings.tags),
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
@@ -136,11 +137,11 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                         Navigator.pop(context);
                       }
                     },
-                    child: const Text('Save Workout'),
+                    child: const Text(AppStrings.saveWorkout),
                   ),
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Cancel Workout'),
+                    child: const Text(AppStrings.cancelWorkout),
                   ),
                 ],
               ),
