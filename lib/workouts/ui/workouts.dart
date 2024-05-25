@@ -25,8 +25,6 @@ class Workouts extends StatelessWidget {
                     child: ListTile(
                       onTap: () {
                         final exercises = workouts[index].exercises;
-                        print('here');
-                        print(exercises.runtimeType);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
