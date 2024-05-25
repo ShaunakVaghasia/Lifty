@@ -26,7 +26,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
   late final Map<String, dynamic> exercises = widget.exercisesList ?? {}; // If null, start at empty list
 
   // Controllers
-  final TextEditingController nameController = TextEditingController();
+  late final TextEditingController nameController = TextEditingController(text: widget.name);
 
   final TextEditingController exerciseNameControler = TextEditingController();
   final TextEditingController weightController = TextEditingController();
