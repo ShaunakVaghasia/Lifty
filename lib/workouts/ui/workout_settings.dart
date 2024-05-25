@@ -12,6 +12,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
 
   @override
   void dispose() {
+    nameController.dispose();
     super.dispose();
   }
 
@@ -31,8 +32,8 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            const Padding(padding: EdgeInsets.only(top: 15)),
             TextField(
               decoration: InputDecoration(
                 filled: true,
@@ -44,6 +45,64 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 ),
               ),
               controller: nameController,
+            ),
+            SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.55,
+                color: Colors.red,
+                child: Column(
+                  children: [
+                    const Padding(padding: EdgeInsets.only(bottom: 10)),
+                    TextField(
+                      decoration: InputDecoration(
+                        filled: true,
+                        label: const Text('Exercise Name'),
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide: const BorderSide(color: Colors.white, width: 4),
+                        ),
+                      ),
+                      controller: nameController,
+                    ),
+                    const Padding(padding: EdgeInsets.only(bottom: 10)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              filled: true,
+                              label: const Text('Sets'),
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: const BorderSide(color: Colors.white, width: 4),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
+                        SizedBox(
+                          width: 150,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              filled: true,
+                              label: const Text('Reps'),
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: const BorderSide(color: Colors.white, width: 4),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
