@@ -15,6 +15,7 @@ abstract class ProfileCoreApi {
   // Submit profile updates
   Future<void> updateProfile(String firstName, String lastName,
       String emailAddress, DateTime birthdate, String? gender);
-  Future<void> updateMeasurements(
-      int height, int weight, String unit, String activityLevel);
+  Future<void> updateHeight(int height, String unit);
+  Future<void> updateWeight(double weight, String unit);
+  Future<void> updateActivityLevel(String activityLevel);
 }

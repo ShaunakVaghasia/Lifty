@@ -18,7 +18,8 @@ class ProfileCore implements ProfileCoreApi {
   bool get editMode => _editMode;
   Function(bool editMode) _onChangeEditMode = (value) {};
   @override
-  void onChangeEditMode(Function(bool editMode) callback) => _onChangeEditMode = callback;
+  void onChangeEditMode(Function(bool editMode) callback) =>
+      _onChangeEditMode = callback;
 
   final ProfileInfo? _profile = null;
   @override
@@ -26,7 +27,8 @@ class ProfileCore implements ProfileCoreApi {
 
   Function(ProfileInfo profile) _onChangeProfile = (value) {};
   @override
-  void onChangeProfile(Function(ProfileInfo) callback) => _onChangeProfile = callback;
+  void onChangeProfile(Function(ProfileInfo) callback) =>
+      _onChangeProfile = callback;
 
   @override
   Future<ProfileInfo?> loadProfile() async {
@@ -47,9 +49,12 @@ class ProfileCore implements ProfileCoreApi {
   }
 
   @override
-  Future<void> updateProfile(
-      String firstName, String lastName, String emailAddress, DateTime birthdate, String? gender) async {}
-
+  Future<void> updateProfile(String firstName, String lastName,
+      String emailAddress, DateTime birthdate, String? gender) async {}
   @override
-  Future<void> updateMeasurements(int height, int weight, String unit, String activityLevel) async {}
+  Future<void> updateHeight(int height, String unit) async {}
+  @override
+  Future<void> updateWeight(double weight, String unit) async {}
+  @override
+  Future<void> updateActivityLevel(String activityLevel) async {}
 }
