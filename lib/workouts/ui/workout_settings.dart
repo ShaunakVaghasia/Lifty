@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifty/app/theme/app_strings.dart';
 import 'package:lifty/app/theme/color_palette.dart';
+import 'package:lifty/app/theme/ui_constants.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
 import 'package:lifty/workouts/ui/create_workout.dart';
 
@@ -88,17 +89,17 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                         subtitle: Row(
                           children: [
                             Text(
-                              exercises.values.elementAt(index)[0].toString(),
+                              exercises.values.elementAt(index)[UiConstants.weight].toString(),
                               style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
                             ),
                             const Padding(padding: EdgeInsets.only(left: 40)),
                             Text(
-                              exercises.values.elementAt(index)[1].toString(),
+                              exercises.values.elementAt(index)[UiConstants.sets].toString(),
                               style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
                             ),
                             const Text(' X '),
                             Text(
-                              exercises.values.elementAt(index)[2].toString(),
+                              exercises.values.elementAt(index)[UiConstants.reps].toString(),
                               style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
                             ),
                           ],
