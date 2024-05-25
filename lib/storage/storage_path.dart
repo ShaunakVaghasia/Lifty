@@ -10,15 +10,18 @@ class StoragePath {
 
   final base = FirebaseFirestore.instance;
 
-  String? getCurrentUser() => FirebaseAuth.instance.currentUser?.uid;
+  String? getCurrentUserId() => FirebaseAuth.instance.currentUser?.uid;
 
   /// Main user path
-  DocumentReference userPath() => base.collection(usersCollection).doc(getCurrentUser());
+  DocumentReference userPath() =>
+      base.collection(usersCollection).doc(getCurrentUserId());
 
   // Collections
 
-  CollectionReference workoutPath() => userPath().collection(workoutsCollection);
-  CollectionReference nutritionPath() => userPath().collection(nutritionCollection);
+  CollectionReference workoutPath() =>
+      userPath().collection(workoutsCollection);
+  CollectionReference nutritionPath() =>
+      userPath().collection(nutritionCollection);
 
   /// Documents
   DocumentReference documentWorkoutPath(String id) => workoutPath().doc(id);
