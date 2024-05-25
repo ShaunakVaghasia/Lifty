@@ -54,10 +54,10 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
           title: const Text(AppStrings.createAWorkout),
         ),
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          padding: UiConstants.spacer(left: 10, right: 10),
           child: Column(
             children: [
-              const Padding(padding: EdgeInsets.only(top: 15)),
+              Padding(padding: UiConstants.spacer(top: 15)),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -70,7 +70,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 ),
                 controller: nameController,
               ),
-              const Padding(padding: EdgeInsets.only(bottom: 10)),
+              Padding(padding: UiConstants.spacer(bottom: 10)),
               SingleChildScrollView(
                 child: Container(
                   decoration:
@@ -92,7 +92,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                               exercises.values.elementAt(index)[UiConstants.weight].toString(),
                               style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
                             ),
-                            const Padding(padding: EdgeInsets.only(left: 40)),
+                            Padding(padding: UiConstants.spacer(left: 40)),
                             Text(
                               exercises.values.elementAt(index)[UiConstants.sets].toString(),
                               style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
@@ -127,7 +127,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                   ),
                 ),
               ),
-              const Padding(padding: EdgeInsets.only(bottom: 10)),
+              Padding(padding: UiConstants.spacer(bottom: 10)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
