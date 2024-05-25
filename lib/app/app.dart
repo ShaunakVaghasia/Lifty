@@ -47,7 +47,9 @@ class Lifty extends StatelessWidget {
     return MaterialApp(
       title: _appName,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
         useMaterial3: true,
       ),
       home: ValueListenableBuilder(
@@ -61,14 +63,11 @@ class Lifty extends StatelessWidget {
                       navBarAdapter: _navBarAdapter,
                     ),
                     body: <Widget>[
-                      Workouts(
-                          workoutsCore: _workoutsCore,
-                          workoutsAdapter: _workoutsAdapter),
+                      Workouts(workoutsCore: _workoutsCore, workoutsAdapter: _workoutsAdapter),
                       const Nutrition(),
                       Profile(authCore: _authCore, profileCore: _profileCore),
                     ][bottomBarIndex]))
-            : Scaffold(
-                body: Login(authCore: _authCore, authAdapter: _authAdapter)),
+            : Scaffold(body: Login(authCore: _authCore, authAdapter: _authAdapter)),
       ),
     );
   }
