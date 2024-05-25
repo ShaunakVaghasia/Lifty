@@ -11,7 +11,7 @@ class ProfileInfo {
   Timestamp birthdate;
   String? gender;
   int? height;
-  int? weight;
+  double? weight;
   double? bmi;
   String? heightUnit;
   String? weightUnit;
