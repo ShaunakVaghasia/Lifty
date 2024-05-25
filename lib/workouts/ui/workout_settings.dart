@@ -14,17 +14,21 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
   // Controllers
   final TextEditingController nameController = TextEditingController();
 
+  final TextEditingController exerciseNameControler = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
+  final TextEditingController setsController = TextEditingController();
+  final TextEditingController repsController = TextEditingController();
+
   @override
   void dispose() {
     nameController.dispose();
-
+    weightController.dispose();
+    setsController.dispose();
+    repsController.dispose();
     super.dispose();
   }
 
   _addExercise() {
-    final TextEditingController exerciseNameControler = TextEditingController();
-    final TextEditingController setsController = TextEditingController();
-    final TextEditingController repsController = TextEditingController();
     return showDialog(
       context: context,
       builder: (context) {
@@ -51,7 +55,25 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: 150,
+                      width: 100,
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        decoration: InputDecoration(
+                          filled: true,
+                          label: const Text('Weight'),
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            borderSide: const BorderSide(color: Colors.white, width: 4),
+                          ),
+                        ),
+                        controller: weightController,
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.fromLTRB(5, 0, 5, 0)),
+                    SizedBox(
+                      width: 100,
                       child: TextField(
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -67,9 +89,9 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                         controller: setsController,
                       ),
                     ),
-                    const Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
+                    const Padding(padding: EdgeInsets.fromLTRB(5, 0, 5, 0)),
                     SizedBox(
-                      width: 150,
+                      width: 100,
                       child: TextField(
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
