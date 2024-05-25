@@ -44,7 +44,6 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
 
   @override
   Widget build(BuildContext context) {
-    print(exercises);
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
