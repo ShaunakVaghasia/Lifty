@@ -33,8 +33,8 @@ class Workouts extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
             child: FloatingActionButton(
                 child: const Icon(Icons.add),
-                onPressed: () =>
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const WorkoutSettings()))
+                onPressed: () => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => WorkoutSettings(workoutsCore: workoutsCore)))
                 // await workoutsCore.createWorkout(
                 //     {
                 //       'bench': [3, 2]
