@@ -36,10 +36,10 @@ class ProfileCore implements ProfileCoreApi {
       final value = await storage.profile.loadProfile();
       if (value != null) {
         _onChangeProfile(value);
-        print("Getting User Profile");
-        print("First Name: ${value.firstName}");
-        print("Last Name: ${value.lastName}");
-        print("Email: ${value.email}");
+        // print("Getting User Profile"); // Debug.
+        // print("First Name: ${value.firstName}");  // Debug.
+        // print("First Name: ${value.firstName}");  // Debug.
+        // print("Email: ${value.email}"); // Debug.
       }
       return value;
     } catch (e) {

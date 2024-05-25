@@ -6,6 +6,15 @@ class WorkoutStorage implements WorkoutsStorageApi {
   final _pathHelper = StoragePath();
 
   @override
+  Future<void> saveWorkout(String id, WorkoutInfo workout) async {
+    try {
+      await _pathHelper.documentWorkoutPath(id).set(workout.workoutInfoMap());
+    } catch (e) {
+      print('error creating workout: $e');
+    }
+  }
+
+  @override
   Future<List<WorkoutInfo>?> loadAllWorkouts() async {
     final List<WorkoutInfo> allWorkouts = [];
     try {
