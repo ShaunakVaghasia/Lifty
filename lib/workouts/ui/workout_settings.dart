@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
 
+// TODO: Absolute Spaghetti code. Need to change when Mock-ups are done.
 class WorkoutSettings extends StatefulWidget {
   const WorkoutSettings({super.key, required this.workoutsCore});
 
