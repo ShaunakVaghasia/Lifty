@@ -46,7 +46,7 @@ class WorkoutsCore implements WorkoutsCoreApi {
   }
 
   @override
-  Future<void> createWorkout(Map<String, List> exercises, String name, List<String> tags) async {
+  Future<void> createWorkout(Map<String, dynamic> exercises, String name, List<String> tags) async {
     final id = const Uuid().v4(); // Randomly generated id.
     try {
       final workout = WorkoutInfo(
