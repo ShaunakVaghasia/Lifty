@@ -87,7 +87,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(), borderRadius: UiConstants.roundedCorners, color: Colors.white),
-                  height: MediaQuery.of(context).size.height * 0.55,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   child: ListView.builder(
                     itemCount: exercises.length,
                     itemBuilder: (context, index) => Card(
@@ -135,6 +135,26 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 onPressed: () => _addExercise(),
                 child: const Text(AppStrings.addExercise),
               ),
+              Padding(padding: UiConstants.spacer(bottom: 10)),
+              // Container(
+              //   height: 100,
+              //   width: 400,
+              //   decoration:
+              //       BoxDecoration(border: Border.all(), borderRadius: UiConstants.roundedCorners, color: Colors.white),
+              //   child: GridView.builder(
+              //     itemCount: 4,
+              //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //         crossAxisCount: 3, mainAxisSpacing: 8, crossAxisSpacing: 8),
+              //     itemBuilder: (context, index) {
+              //       return SizedBox(
+              //           child: Container(
+              //         decoration: BoxDecoration(
+              //             border: Border.all(), borderRadius: UiConstants.roundedCorners, color: Colors.red),
+              //         height: 10,
+              //       ));
+              //     },
+              //   ),
+              // ),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
