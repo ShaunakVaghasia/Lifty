@@ -63,4 +63,21 @@ class WorkoutsCore implements WorkoutsCoreApi {
       print('Error saving workout $e');
     }
   }
+
+  @override
+  Future<void> updateWorkout(String id, Map<String, dynamic> exercises, String name, List<String> tags) async {
+    try {
+      final workout = WorkoutInfo(
+        date: Timestamp.now(), // TODO.
+        exercises: exercises,
+        id: id,
+        name: name,
+        tags: tags,
+      );
+      await storage.workouts.saveWorkout(id, workout);
+    } catch (e) {
+      // TODO:  Error handling.
+      print('Error updating workout $e');
+    }
+  }
 }

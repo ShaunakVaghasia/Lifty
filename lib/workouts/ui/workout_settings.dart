@@ -10,14 +10,13 @@ class WorkoutSettings extends StatefulWidget {
   const WorkoutSettings({
     super.key,
     required this.workoutsCore,
-    required this.updating,
+    this.workoutId,
     this.name = '',
     this.exercisesList,
   });
 
   final WorkoutsCoreApi workoutsCore;
-
-  final bool updating;
+  final String? workoutId;
   final Map<String, dynamic>? exercisesList;
   final String name;
 
@@ -172,7 +171,10 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 children: [
                   ElevatedButton(
                     onPressed: () async {
-                      await widget.workoutsCore.createWorkout(exercises, nameController.text, ['as']);
+                      widget.workoutId == null
+                          ? await widget.workoutsCore.createWorkout(exercises, nameController.text, ['as'])
+                          : await widget.workoutsCore.updateWorkout(widget.workoutId ?? '', exercises,
+                              nameController.text, ['bs']); // '??' null-check will never execute.
                       if (context.mounted) {
                         Navigator.pop(context);
                       }
