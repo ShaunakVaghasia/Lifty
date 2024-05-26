@@ -58,6 +58,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: ColorPalette.appBackgroundColor,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           elevation: UiConstants.topBarElevation,
           shape: UiConstants.topBarRounding,
