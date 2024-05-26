@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CreateWorkout extends StatelessWidget {
-  CreateWorkout({super.key, required this.getExercises});
+class CreateWorkout extends StatefulWidget {
+  const CreateWorkout({super.key, required this.getExercises});
 
   final Function(Map<String, dynamic> exercises) getExercises;
 
+  @override
+  State<CreateWorkout> createState() => _CreateWorkoutState();
+}
+
+class _CreateWorkoutState extends State<CreateWorkout> {
   final TextEditingController exerciseNameControler = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final TextEditingController setsController = TextEditingController();
   final TextEditingController repsController = TextEditingController();
+
+  @override
+  void dispose() {
+    exerciseNameControler.dispose();
+    weightController.dispose();
+    setsController.dispose();
+    repsController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +110,7 @@ class CreateWorkout extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    getExercises({
+                    widget.getExercises({
                       exerciseNameControler.text: [
                         int.parse(weightController.text),
                         int.parse(setsController.text),
