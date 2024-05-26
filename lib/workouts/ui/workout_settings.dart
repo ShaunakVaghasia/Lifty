@@ -43,6 +43,16 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
           getExercises: (exercise) => exercises.addAll(exercise),
         ),
       );
+  _editExercise(String name, int weight, int sets, int reps) => showDialog(
+        context: context,
+        builder: (context) => CreateWorkout(
+          exerciseName: name,
+          weight: weight.toString(),
+          sets: sets.toString(),
+          reps: reps.toString(),
+          getExercises: (exercise) {},
+        ),
+      );
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -83,7 +93,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                       elevation: 7,
                       child: ListTile(
                         title: Text(
-                          exercises.keys.elementAt(index),
+                          exercises.values.elementAt(index)[UiConstants.exercise],
                           style: const TextStyle(fontSize: 25, overflow: TextOverflow.ellipsis),
                         ),
                         subtitle: Row(
@@ -104,7 +114,11 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                             ),
                           ],
                         ),
-                        trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.edit_rounded)),
+                        trailing: IconButton(
+                            onPressed: () {
+                              // _editExercise(exercises.keys.elementAt(index), weight, sets, reps)
+                            },
+                            icon: const Icon(Icons.edit_rounded)),
                       ),
                     ),
                   ),

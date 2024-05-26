@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateWorkout extends StatefulWidget {
   const CreateWorkout(
@@ -121,8 +122,10 @@ class _CreateWorkoutState extends State<CreateWorkout> {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    final id = const Uuid().v4();
                     widget.getExercises({
-                      exerciseNameControler.text: [
+                      id: [
+                        exerciseNameControler.text,
                         int.parse(weightController.text),
                         int.parse(setsController.text),
                         int.parse(repsController.text),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class UiConstants {
-  static const int weight = 0;
-  static const int sets = 1;
-  static const int reps = 2;
+  static const int exercise = 0;
+  static const int weight = 1;
+  static const int sets = 2;
+  static const int reps = 3;
 
   static double topBarElevation = 5;
 
