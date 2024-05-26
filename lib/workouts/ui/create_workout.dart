@@ -6,6 +6,7 @@ class CreateWorkout extends StatefulWidget {
   const CreateWorkout(
       {super.key,
       required this.getExercises,
+      this.id,
       this.exerciseName = '',
       this.weight = '',
       this.sets = '',
@@ -13,6 +14,7 @@ class CreateWorkout extends StatefulWidget {
 
   final Function(Map<String, dynamic> exercises) getExercises;
 
+  final String? id;
   final String exerciseName;
   final String weight;
   final String sets;
@@ -122,7 +124,7 @@ class _CreateWorkoutState extends State<CreateWorkout> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    final id = const Uuid().v4();
+                    final id = widget.id ?? const Uuid().v4();
                     widget.getExercises({
                       id: [
                         exerciseNameControler.text,

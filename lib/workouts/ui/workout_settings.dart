@@ -43,14 +43,15 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
           getExercises: (exercise) => exercises.addAll(exercise),
         ),
       );
-  _editExercise(String name, int weight, int sets, int reps) => showDialog(
+  _editExercise(String id, String name, int weight, int sets, int reps) => showDialog(
         context: context,
         builder: (context) => CreateWorkout(
+          id: id,
           exerciseName: name,
           weight: weight.toString(),
           sets: sets.toString(),
           reps: reps.toString(),
-          getExercises: (exercise) {},
+          getExercises: (exercise) => exercises.update(id, (value) => exercise.values.first),
         ),
       );
 
@@ -116,7 +117,12 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                         ),
                         trailing: IconButton(
                             onPressed: () {
-                              // _editExercise(exercises.keys.elementAt(index), weight, sets, reps)
+                              _editExercise(
+                                  exercises.keys.elementAt(index),
+                                  exercises.values.elementAt(index)[UiConstants.exercise],
+                                  exercises.values.elementAt(index)[UiConstants.weight],
+                                  exercises.values.elementAt(index)[UiConstants.sets],
+                                  exercises.values.elementAt(index)[UiConstants.reps]);
                             },
                             icon: const Icon(Icons.edit_rounded)),
                       ),
