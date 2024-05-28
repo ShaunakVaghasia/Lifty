@@ -10,6 +10,10 @@ class WorkoutsAdapter {
     workoutsCore.onChangeWorkouts((workouts) => workoutsNotifier.value = workouts);
     workoutsCore
         .onChangeWorkout((workout) => workoutsNotifier.value = List.from(workoutsNotifier.value)..insert(0, workout));
+    workoutsCore.onUpdateWorkout((workout, id) {
+      final idx = workoutsNotifier.value.indexWhere((element) => element.id == id);
+      workoutsNotifier.value = List.from(workoutsNotifier.value)..replaceRange(idx, idx + 1, [workout]);
+    });
   }
   late final ValueNotifier<List<WorkoutInfo>> workoutsNotifier;
 }

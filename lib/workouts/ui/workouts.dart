@@ -29,7 +29,7 @@ class Workouts extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => WorkoutSettings(
-                              updating: true,
+                              workoutId: workouts[index].id,
                               workoutsCore: workoutsCore,
                               name: workouts[index].name,
                               exercisesList: exercises is Map<String, dynamic> ? exercises : null,
@@ -50,10 +50,7 @@ class Workouts extends StatelessWidget {
                 onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => WorkoutSettings(
-                          updating: false,
-                          workoutsCore: workoutsCore,
-                        ),
+                        builder: (context) => WorkoutSettings(workoutsCore: workoutsCore),
                       ),
                     )
                 // await workoutsCore.createWorkout(

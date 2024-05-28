@@ -10,14 +10,13 @@ class WorkoutSettings extends StatefulWidget {
   const WorkoutSettings({
     super.key,
     required this.workoutsCore,
-    required this.updating,
+    this.workoutId,
     this.name = '',
     this.exercisesList,
   });
 
   final WorkoutsCoreApi workoutsCore;
-
-  final bool updating;
+  final String? workoutId;
   final Map<String, dynamic>? exercisesList;
   final String name;
 
@@ -43,10 +42,22 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
           getExercises: (exercise) => exercises.addAll(exercise),
         ),
       );
+  _editExercise(String id, String name, int weight, int sets, int reps) => showDialog(
+        context: context,
+        builder: (context) => CreateWorkout(
+          id: id,
+          exerciseName: name,
+          weight: weight.toString(),
+          sets: sets.toString(),
+          reps: reps.toString(),
+          getExercises: (exercise) => exercises.update(id, (value) => exercise.values.first),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: ColorPalette.appBackgroundColor,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           elevation: UiConstants.topBarElevation,
           shape: UiConstants.topBarRounding,
@@ -75,7 +86,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(), borderRadius: UiConstants.roundedCorners, color: Colors.white),
-                  height: MediaQuery.of(context).size.height * 0.55,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   child: ListView.builder(
                     itemCount: exercises.length,
                     itemBuilder: (context, index) => Card(
@@ -83,7 +94,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                       elevation: 7,
                       child: ListTile(
                         title: Text(
-                          exercises.keys.elementAt(index),
+                          exercises.values.elementAt(index)[UiConstants.exercise],
                           style: const TextStyle(fontSize: 25, overflow: TextOverflow.ellipsis),
                         ),
                         subtitle: Row(
@@ -104,7 +115,16 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                             ),
                           ],
                         ),
-                        trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.edit_rounded)),
+                        trailing: IconButton(
+                            onPressed: () {
+                              _editExercise(
+                                  exercises.keys.elementAt(index),
+                                  exercises.values.elementAt(index)[UiConstants.exercise],
+                                  exercises.values.elementAt(index)[UiConstants.weight],
+                                  exercises.values.elementAt(index)[UiConstants.sets],
+                                  exercises.values.elementAt(index)[UiConstants.reps]);
+                            },
+                            icon: const Icon(Icons.edit_rounded)),
                       ),
                     ),
                   ),
@@ -114,6 +134,26 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 onPressed: () => _addExercise(),
                 child: const Text(AppStrings.addExercise),
               ),
+              Padding(padding: UiConstants.spacer(bottom: 10)),
+              // Container(
+              //   height: 100,
+              //   width: 400,
+              //   decoration:
+              //       BoxDecoration(border: Border.all(), borderRadius: UiConstants.roundedCorners, color: Colors.white),
+              //   child: GridView.builder(
+              //     itemCount: 4,
+              //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //         crossAxisCount: 3, mainAxisSpacing: 8, crossAxisSpacing: 8),
+              //     itemBuilder: (context, index) {
+              //       return SizedBox(
+              //           child: Container(
+              //         decoration: BoxDecoration(
+              //             border: Border.all(), borderRadius: UiConstants.roundedCorners, color: Colors.red),
+              //         height: 10,
+              //       ));
+              //     },
+              //   ),
+              // ),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -131,7 +171,10 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 children: [
                   ElevatedButton(
                     onPressed: () async {
-                      await widget.workoutsCore.createWorkout(exercises, nameController.text, ['as']);
+                      widget.workoutId == null
+                          ? await widget.workoutsCore.createWorkout(exercises, nameController.text, ['as'])
+                          : await widget.workoutsCore.updateWorkout(widget.workoutId ?? '', exercises,
+                              nameController.text, ['bs']); // '??' null-check will never execute.
                       if (context.mounted) {
                         Navigator.pop(context);
                       }
