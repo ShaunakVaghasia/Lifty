@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lifty/app/theme/app_strings.dart';
 
 class CreateWorkout extends StatelessWidget {
   CreateWorkout({super.key, required this.getExercises});
@@ -22,7 +23,7 @@ class CreateWorkout extends StatelessWidget {
             TextField(
               decoration: InputDecoration(
                 filled: true,
-                label: const Text('Exercise Name'),
+                label: const Text(AppStrings.exerciseName),
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25),
@@ -42,7 +43,7 @@ class CreateWorkout extends StatelessWidget {
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
                       filled: true,
-                      label: const Text('Weight'),
+                      label: const Text(AppStrings.weight),
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -60,7 +61,7 @@ class CreateWorkout extends StatelessWidget {
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
                       filled: true,
-                      label: const Text('Sets'),
+                      label: const Text(AppStrings.sets),
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -78,7 +79,7 @@ class CreateWorkout extends StatelessWidget {
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
                       filled: true,
-                      label: const Text('Reps'),
+                      label: const Text(AppStrings.reps),
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
