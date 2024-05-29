@@ -36,12 +36,6 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
     super.dispose();
   }
 
-  // _addExercise() => showDialog(
-  //       context: context,
-  //       builder: (context) => CreateWorkout(
-  //         getExercises: (exercise) => exercises.addAll(exercise),
-  //       ),
-  //     );
   _editExercise({String? id, String? name, int? weight, int? sets, int? reps}) => showDialog(
         context: context,
         builder: (context) => CreateWorkout(
