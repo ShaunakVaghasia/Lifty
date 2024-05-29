@@ -36,7 +36,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
     super.dispose();
   }
 
-  _editExercise({String? id, String? name, int? weight, int? sets, int? reps}) => showDialog(
+  _modifyExerciseMap({String? id, String? name, int? weight, int? sets, int? reps}) => showDialog(
         context: context,
         builder: (context) => CreateWorkout(
           id: id,
@@ -112,7 +112,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                         ),
                         trailing: IconButton(
                             onPressed: () {
-                              _editExercise(
+                              _modifyExerciseMap(
                                   id: exercises.keys.elementAt(index),
                                   name: exercises.values.elementAt(index)[UiConstants.exercise],
                                   weight: exercises.values.elementAt(index)[UiConstants.weight],
@@ -126,7 +126,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () => _editExercise(),
+                onPressed: () => _modifyExerciseMap(),
                 child: const Text(AppStrings.addExercise),
               ),
               Padding(padding: UiConstants.spacer(bottom: 10)),
