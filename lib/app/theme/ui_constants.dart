@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class UiConstants {
+  static const String emptyString = '';
   static const String exercise = 'exercise';
   static const String weight = 'weight';
   static const String sets = 'sets';

@@ -36,21 +36,22 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
     super.dispose();
   }
 
-  _addExercise() => showDialog(
-        context: context,
-        builder: (context) => CreateWorkout(
-          getExercises: (exercise) => exercises.addAll(exercise),
-        ),
-      );
-  _editExercise(String id, String name, int weight, int sets, int reps) => showDialog(
+  // _addExercise() => showDialog(
+  //       context: context,
+  //       builder: (context) => CreateWorkout(
+  //         getExercises: (exercise) => exercises.addAll(exercise),
+  //       ),
+  //     );
+  _editExercise({String? id, String? name, int? weight, int? sets, int? reps}) => showDialog(
         context: context,
         builder: (context) => CreateWorkout(
           id: id,
           exerciseName: name,
-          weight: weight.toString(),
-          sets: sets.toString(),
-          reps: reps.toString(),
-          getExercises: (exercise) => exercises.update(id, (value) => exercise.values.first),
+          weight: weight,
+          sets: sets,
+          reps: reps,
+          getExercises: (exercise) =>
+              id == null ? exercises.addAll(exercise) : exercises.update(id, (value) => exercise.values.first),
         ),
       );
 
@@ -89,52 +90,49 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                   height: MediaQuery.of(context).size.height * 0.45,
                   child: ListView.builder(
                     itemCount: exercises.length,
-                    itemBuilder: (context, index) {
-                      print(exercises.values.elementAt(index)['exercise']);
-                      return Card(
-                        shape: RoundedRectangleBorder(borderRadius: UiConstants.roundedCorners),
-                        elevation: 7,
-                        child: ListTile(
-                          title: Text(
-                            exercises.values.elementAt(index)[UiConstants.exercise],
-                            style: const TextStyle(fontSize: 25, overflow: TextOverflow.ellipsis),
-                          ),
-                          subtitle: Row(
-                            children: [
-                              Text(
-                                exercises.values.elementAt(index)[UiConstants.weight].toString(),
-                                style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
-                              ),
-                              Padding(padding: UiConstants.spacer(left: 40)),
-                              Text(
-                                exercises.values.elementAt(index)[UiConstants.sets].toString(),
-                                style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
-                              ),
-                              const Text(' X '),
-                              Text(
-                                exercises.values.elementAt(index)[UiConstants.reps].toString(),
-                                style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
-                              ),
-                            ],
-                          ),
-                          trailing: IconButton(
-                              onPressed: () {
-                                _editExercise(
-                                    exercises.keys.elementAt(index),
-                                    exercises.values.elementAt(index)[UiConstants.exercise],
-                                    exercises.values.elementAt(index)[UiConstants.weight],
-                                    exercises.values.elementAt(index)[UiConstants.sets],
-                                    exercises.values.elementAt(index)[UiConstants.reps]);
-                              },
-                              icon: const Icon(Icons.edit_rounded)),
+                    itemBuilder: (context, index) => Card(
+                      shape: RoundedRectangleBorder(borderRadius: UiConstants.roundedCorners),
+                      elevation: 7,
+                      child: ListTile(
+                        title: Text(
+                          exercises.values.elementAt(index)[UiConstants.exercise],
+                          style: const TextStyle(fontSize: 25, overflow: TextOverflow.ellipsis),
                         ),
-                      );
-                    },
+                        subtitle: Row(
+                          children: [
+                            Text(
+                              exercises.values.elementAt(index)[UiConstants.weight].toString(),
+                              style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
+                            ),
+                            Padding(padding: UiConstants.spacer(left: 40)),
+                            Text(
+                              exercises.values.elementAt(index)[UiConstants.sets].toString(),
+                              style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
+                            ),
+                            const Text(' X '),
+                            Text(
+                              exercises.values.elementAt(index)[UiConstants.reps].toString(),
+                              style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
+                            ),
+                          ],
+                        ),
+                        trailing: IconButton(
+                            onPressed: () {
+                              _editExercise(
+                                  id: exercises.keys.elementAt(index),
+                                  name: exercises.values.elementAt(index)[UiConstants.exercise],
+                                  weight: exercises.values.elementAt(index)[UiConstants.weight],
+                                  sets: exercises.values.elementAt(index)[UiConstants.sets],
+                                  reps: exercises.values.elementAt(index)[UiConstants.reps]);
+                            },
+                            icon: const Icon(Icons.edit_rounded)),
+                      ),
+                    ),
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: () => _addExercise(),
+                onPressed: () => _editExercise(),
                 child: const Text(AppStrings.addExercise),
               ),
               Padding(padding: UiConstants.spacer(bottom: 10)),

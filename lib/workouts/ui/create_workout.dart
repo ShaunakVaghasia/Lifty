@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lifty/app/theme/app_strings.dart';
+import 'package:lifty/app/theme/ui_constants.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateWorkout extends StatefulWidget {
   const CreateWorkout(
-      {super.key,
-      required this.getExercises,
-      this.id,
-      this.exerciseName = '',
-      this.weight = '',
-      this.sets = '',
-      this.reps = ''});
+      {super.key, required this.getExercises, this.id, this.exerciseName, this.weight, this.sets, this.reps});
 
   final Function(Map<String, dynamic> exercises) getExercises;
 
   final String? id;
-  final String exerciseName;
-  final String weight;
-  final String sets;
-  final String reps;
+  final String? exerciseName;
+  final int? weight;
+  final int? sets;
+  final int? reps;
 
   @override
   State<CreateWorkout> createState() => _CreateWorkoutState();
 }
 
 class _CreateWorkoutState extends State<CreateWorkout> {
-  late final TextEditingController exerciseNameControler = TextEditingController(text: widget.exerciseName);
-  late final TextEditingController weightController = TextEditingController(text: widget.weight);
-  late final TextEditingController setsController = TextEditingController(text: widget.sets);
-  late final TextEditingController repsController = TextEditingController(text: widget.reps);
+  late final TextEditingController exerciseNameControler =
+      TextEditingController(text: widget.exerciseName ?? UiConstants.emptyString);
+  late final TextEditingController weightController =
+      TextEditingController(text: widget.weight == null ? UiConstants.emptyString : widget.weight.toString());
+  late final TextEditingController setsController =
+      TextEditingController(text: widget.sets == null ? UiConstants.emptyString : widget.sets.toString());
+  late final TextEditingController repsController =
+      TextEditingController(text: widget.reps == null ? UiConstants.emptyString : widget.reps.toString());
 
   @override
   void dispose() {
