@@ -127,12 +127,12 @@ class _CreateWorkoutState extends State<CreateWorkout> {
                   onPressed: () {
                     final id = widget.id ?? const Uuid().v4();
                     widget.getExercises({
-                      id: [
-                        exerciseNameControler.text,
-                        int.parse(weightController.text),
-                        int.parse(setsController.text),
-                        int.parse(repsController.text),
-                      ]
+                      id: {
+                        'exercise': exerciseNameControler.text,
+                        'weight': int.parse(weightController.text),
+                        'sets': int.parse(setsController.text),
+                        'reps': int.parse(repsController.text),
+                      }
                     });
                     Navigator.pop(context);
                     // exerciseNameControler.clear();

@@ -89,44 +89,47 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                   height: MediaQuery.of(context).size.height * 0.45,
                   child: ListView.builder(
                     itemCount: exercises.length,
-                    itemBuilder: (context, index) => Card(
-                      shape: RoundedRectangleBorder(borderRadius: UiConstants.roundedCorners),
-                      elevation: 7,
-                      child: ListTile(
-                        title: Text(
-                          exercises.values.elementAt(index)[UiConstants.exercise],
-                          style: const TextStyle(fontSize: 25, overflow: TextOverflow.ellipsis),
+                    itemBuilder: (context, index) {
+                      print(exercises.values.elementAt(index)['exercise']);
+                      return Card(
+                        shape: RoundedRectangleBorder(borderRadius: UiConstants.roundedCorners),
+                        elevation: 7,
+                        child: ListTile(
+                          title: Text(
+                            exercises.values.elementAt(index)[UiConstants.exercise],
+                            style: const TextStyle(fontSize: 25, overflow: TextOverflow.ellipsis),
+                          ),
+                          subtitle: Row(
+                            children: [
+                              Text(
+                                exercises.values.elementAt(index)[UiConstants.weight].toString(),
+                                style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
+                              ),
+                              Padding(padding: UiConstants.spacer(left: 40)),
+                              Text(
+                                exercises.values.elementAt(index)[UiConstants.sets].toString(),
+                                style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
+                              ),
+                              const Text(' X '),
+                              Text(
+                                exercises.values.elementAt(index)[UiConstants.reps].toString(),
+                                style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
+                              ),
+                            ],
+                          ),
+                          trailing: IconButton(
+                              onPressed: () {
+                                _editExercise(
+                                    exercises.keys.elementAt(index),
+                                    exercises.values.elementAt(index)[UiConstants.exercise],
+                                    exercises.values.elementAt(index)[UiConstants.weight],
+                                    exercises.values.elementAt(index)[UiConstants.sets],
+                                    exercises.values.elementAt(index)[UiConstants.reps]);
+                              },
+                              icon: const Icon(Icons.edit_rounded)),
                         ),
-                        subtitle: Row(
-                          children: [
-                            Text(
-                              exercises.values.elementAt(index)[UiConstants.weight].toString(),
-                              style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
-                            ),
-                            Padding(padding: UiConstants.spacer(left: 40)),
-                            Text(
-                              exercises.values.elementAt(index)[UiConstants.sets].toString(),
-                              style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
-                            ),
-                            const Text(' X '),
-                            Text(
-                              exercises.values.elementAt(index)[UiConstants.reps].toString(),
-                              style: const TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
-                            ),
-                          ],
-                        ),
-                        trailing: IconButton(
-                            onPressed: () {
-                              _editExercise(
-                                  exercises.keys.elementAt(index),
-                                  exercises.values.elementAt(index)[UiConstants.exercise],
-                                  exercises.values.elementAt(index)[UiConstants.weight],
-                                  exercises.values.elementAt(index)[UiConstants.sets],
-                                  exercises.values.elementAt(index)[UiConstants.reps]);
-                            },
-                            icon: const Icon(Icons.edit_rounded)),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ),
               ),
