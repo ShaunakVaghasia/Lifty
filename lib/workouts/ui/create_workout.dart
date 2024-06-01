@@ -134,22 +134,12 @@ class _CreateWorkoutState extends State<CreateWorkout> {
                       }
                     });
                     Navigator.pop(context);
-                    // exerciseNameControler.clear();
-                    // weightController.clear();
-                    // setsController.clear();
-                    // repsController.clear();
                   },
                   child: const Text('Save'),
                 ),
                 const Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    // exerciseNameControler.clear();
-                    // weightController.clear();
-                    // setsController.clear();
-                    // repsController.clear();
-                  },
+                  onPressed: () => Navigator.pop(context),
                   child: const Text('Cancel'),
                 ),
               ],
