@@ -13,7 +13,13 @@ class WorkoutsCore implements WorkoutsCoreApi {
 
   final StorageApi storage;
 
-  void init() async => await loadAllWorkouts();
+  void init() async {
+    try {
+      await storage.workouts.loadAllWorkouts();
+    } catch (e) {
+      print('error loading workouts $e');
+    }
+  }
 
   final List<WorkoutInfo> _workouts = [];
   @override
