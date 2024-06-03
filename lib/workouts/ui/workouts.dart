@@ -24,15 +24,12 @@ class Workouts extends StatelessWidget {
                     elevation: 10,
                     child: ListTile(
                       onTap: () {
-                        final exercises = workouts[index].exercises;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => WorkoutSettings(
-                              workoutId: workouts[index].id,
+                              workoutInfo: workouts[index],
                               workoutsCore: workoutsCore,
-                              name: workouts[index].name,
-                              exercisesList: exercises is Map<String, dynamic> ? exercises : null,
                             ),
                           ),
                         );

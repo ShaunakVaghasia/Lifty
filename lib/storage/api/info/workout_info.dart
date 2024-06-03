@@ -26,7 +26,7 @@ class WorkoutInfo {
 
   Timestamp date;
   Timestamp creationDate;
-  Map exercises;
+  Map<String, dynamic> exercises;
   String id;
   String name;
   List tags;

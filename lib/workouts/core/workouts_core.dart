@@ -13,13 +13,7 @@ class WorkoutsCore implements WorkoutsCoreApi {
 
   final StorageApi storage;
 
-  void init() async {
-    try {
-      await storage.workouts.loadAllWorkouts();
-    } catch (e) {
-      print('error loading workouts $e');
-    }
-  }
+  void init() async => await loadAllWorkouts();
 
   final List<WorkoutInfo> _workouts = [];
   @override
@@ -73,18 +67,10 @@ class WorkoutsCore implements WorkoutsCoreApi {
   void onUpdateWorkout(Function(WorkoutInfo workout, String id) callback) => _onUpdateWorkout = callback;
 
   @override
-  Future<void> updateWorkout(String id, Map<String, dynamic> exercises, String name, List<String> tags) async {
+  Future<void> updateWorkout(WorkoutInfo workoutInfo) async {
     try {
-      final workout = WorkoutInfo(
-        creationDate: Timestamp.now(),
-        date: Timestamp.now(), // TODO.
-        exercises: exercises,
-        id: id,
-        name: name,
-        tags: tags,
-      );
-      await storage.workouts.saveWorkout(id, workout);
-      _onUpdateWorkout(workout, id);
+      await storage.workouts.saveWorkout(workoutInfo.id, workoutInfo);
+      _onUpdateWorkout(workoutInfo, workoutInfo.id);
     } catch (e) {
       // TODO:  Error handling.
       print('Error updating workout $e');

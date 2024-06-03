@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifty/app/theme/app_strings.dart';
 import 'package:lifty/app/theme/color_palette.dart';
 import 'package:lifty/app/theme/ui_constants.dart';
+import 'package:lifty/storage/api/info/workout_info.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
 import 'package:lifty/workouts/ui/create_workout.dart';
 
@@ -10,25 +11,21 @@ class WorkoutSettings extends StatefulWidget {
   const WorkoutSettings({
     super.key,
     required this.workoutsCore,
-    this.workoutId,
-    this.name = '',
-    this.exercisesList,
+    this.workoutInfo,
   });
 
   final WorkoutsCoreApi workoutsCore;
-  final String? workoutId;
-  final Map<String, dynamic>? exercisesList;
-  final String name;
-
+  final WorkoutInfo? workoutInfo;
   @override
   State<WorkoutSettings> createState() => _WorkoutSettingsState();
 }
 
 class _WorkoutSettingsState extends State<WorkoutSettings> {
-  late final Map<String, dynamic> exercises = widget.exercisesList ?? {}; // If null, start at empty list
+  late final Map<String, dynamic> exercises = widget.workoutInfo?.exercises ?? {}; // If null, start at empty list
 
   // Controllers
-  late final TextEditingController nameController = TextEditingController(text: widget.name);
+  late final TextEditingController nameController =
+      TextEditingController(text: widget.workoutInfo?.name ?? UiConstants.emptyString);
 
   @override
   void dispose() {
@@ -166,10 +163,10 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                 children: [
                   ElevatedButton(
                     onPressed: () async {
-                      widget.workoutId == null
+                      final workoutInfo = widget.workoutInfo;
+                      workoutInfo == null
                           ? await widget.workoutsCore.createWorkout(exercises, nameController.text, ['as'])
-                          : await widget.workoutsCore.updateWorkout(widget.workoutId ?? '', exercises,
-                              nameController.text, ['bs']); // '??' null-check will never execute.
+                          : await widget.workoutsCore.updateWorkout(workoutInfo); // '??' null-check will never execute.
                       if (context.mounted) {
                         Navigator.pop(context);
                       }
