@@ -72,6 +72,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                   ),
                 ),
                 controller: nameController,
+                onChanged: (value) => widget.workoutInfo?.name = value,
               ),
               Padding(padding: UiConstants.spacer(bottom: 10)),
               SingleChildScrollView(
