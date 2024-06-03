@@ -46,10 +46,7 @@ class WorkoutsCore implements WorkoutsCoreApi {
 
   Function(WorkoutInfo workout) _onChangeWorkout = (value) {};
   @override
-  void onChangeWorkout(Function(WorkoutInfo workout) callback) {
-    print(_workouts);
-    _onChangeWorkout = callback;
-  }
+  void onChangeWorkout(Function(WorkoutInfo workout) callback) => _onChangeWorkout = callback;
 
   @override
   Future<void> createWorkout(Map<String, dynamic> exercises, String name, List<String> tags) async {
