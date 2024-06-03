@@ -35,7 +35,7 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
 
   _modifyExerciseMap({String? id, String? name, int? weight, int? sets, int? reps}) => showDialog(
         context: context,
-        builder: (context) => ModifyWorkout(
+        builder: (context) => ModifyExercises(
           id: id,
           exerciseName: name,
           weight: weight,
