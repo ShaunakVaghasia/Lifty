@@ -4,8 +4,8 @@ import 'package:lifty/app/theme/app_strings.dart';
 import 'package:lifty/app/theme/ui_constants.dart';
 import 'package:uuid/uuid.dart';
 
-class CreateWorkout extends StatefulWidget {
-  const CreateWorkout(
+class ModifyWorkout extends StatefulWidget {
+  const ModifyWorkout(
       {super.key, required this.getExercises, this.id, this.exerciseName, this.weight, this.sets, this.reps});
 
   final Function(Map<String, dynamic> exercises) getExercises;
@@ -17,10 +17,10 @@ class CreateWorkout extends StatefulWidget {
   final int? reps;
 
   @override
-  State<CreateWorkout> createState() => _CreateWorkoutState();
+  State<ModifyWorkout> createState() => _ModifyWorkoutState();
 }
 
-class _CreateWorkoutState extends State<CreateWorkout> {
+class _ModifyWorkoutState extends State<ModifyWorkout> {
   late final TextEditingController exerciseNameControler =
       TextEditingController(text: widget.exerciseName ?? UiConstants.emptyString);
   late final TextEditingController weightController =
