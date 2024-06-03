@@ -8,6 +8,7 @@ class WorkoutInfo {
   WorkoutInfo.clone(WorkoutInfo workoutInfo)
       : this(
           date: workoutInfo.date,
+          creationDate: workoutInfo.creationDate,
           exercises: workoutInfo.exercises,
           id: workoutInfo.id,
           name: workoutInfo.name,
@@ -16,6 +17,7 @@ class WorkoutInfo {
 
   WorkoutInfo({
     required this.date,
+    required this.creationDate,
     required this.exercises,
     required this.id,
     required this.name,
@@ -23,6 +25,7 @@ class WorkoutInfo {
   });
 
   Timestamp date;
+  Timestamp creationDate;
   Map exercises;
   String id;
   String name;
@@ -31,6 +34,7 @@ class WorkoutInfo {
   factory WorkoutInfo.fromMap(Map<String, dynamic> json) {
     return WorkoutInfo(
       date: json['date'],
+      creationDate: json['creationDate'],
       exercises: json['exercises'],
       id: json['id'],
       name: json['name'],
@@ -43,6 +47,7 @@ class WorkoutInfo {
 
   Map<String, dynamic> workoutInfoMap() => {
         'date': date,
+        'creationDate': creationDate,
         'exercises': exercises,
         'id': id,
         'name': name,

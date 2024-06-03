@@ -54,6 +54,7 @@ class WorkoutsCore implements WorkoutsCoreApi {
     try {
       final workout = WorkoutInfo(
         date: Timestamp.now(),
+        creationDate: Timestamp.now(),
         exercises: exercises,
         id: id,
         name: name,
@@ -75,6 +76,7 @@ class WorkoutsCore implements WorkoutsCoreApi {
   Future<void> updateWorkout(String id, Map<String, dynamic> exercises, String name, List<String> tags) async {
     try {
       final workout = WorkoutInfo(
+        creationDate: Timestamp.now(),
         date: Timestamp.now(), // TODO.
         exercises: exercises,
         id: id,
