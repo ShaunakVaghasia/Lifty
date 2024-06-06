@@ -21,6 +21,7 @@ class UiConstants {
 
   static BorderRadius roundedCorners = BorderRadius.circular(25);
 
+  // TODO: Move to its own file?
   // Dates
   static int getDayFromTimestamp(Timestamp timestamp) => timestamp.toDate().day;
   static int getMonthFromTimestamp(Timestamp timestamp) => timestamp.toDate().month;
