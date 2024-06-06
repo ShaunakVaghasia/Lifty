@@ -41,12 +41,11 @@ class UiConstants {
 
   static bool isWithinCurrentWeek(Timestamp timestamp) {
     DateTime now = DateTime.now();
-    DateTime previous = now.subtract(const Duration(days: 7));
-
+    int mondayOffset = now.weekday;
+    DateTime previous = now.subtract(Duration(days: mondayOffset));
     if (timestamp.toDate().isAfter(previous) && timestamp.toDate().isBefore(now)) {
       return true;
     }
-
     return false;
   }
 
