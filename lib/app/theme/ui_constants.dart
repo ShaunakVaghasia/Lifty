@@ -43,6 +43,6 @@ class UiConstants {
     int month = getMonthFromTimestamp(timestamp);
     int year = getYearFromTimestamp(timestamp);
 
-    return '$day/$month/$year';
+    return '$month/$day/$year';
   }
 }
