@@ -47,9 +47,6 @@ class UiConstants {
       return true;
     }
 
-    // List<Map<String, dynamic>> days =
-    //     List.generate(7, (index) => {'label': weekdayNames[index], 'day': now.day - monOffset + index});
-
     return false;
   }
 
