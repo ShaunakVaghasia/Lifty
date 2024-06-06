@@ -24,7 +24,7 @@ class UiConstants {
   // Dates
   static int getDayFromTimestamp(Timestamp timestamp) => timestamp.toDate().day;
   static int getMonthFromTimestamp(Timestamp timestamp) => timestamp.toDate().month;
-  static int getYearFromTimestamp(Timestamp timestamp) => timestamp.toDate().month;
+  static int getYearFromTimestamp(Timestamp timestamp) => timestamp.toDate().year;
   static String getDayOfWeekFromTimestamp(Timestamp timestamp) {
     final daysOfTheWeekMap = {
       1: 'Monday',
