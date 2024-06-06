@@ -21,7 +21,6 @@ class Workouts extends StatelessWidget {
           builder: (context, List<WorkoutInfo> workouts, child) => ListView.builder(
               itemCount: workouts.length,
               itemBuilder: (context, index) => Card(
-                    elevation: 10,
                     child: ListTile(
                       onTap: () {
                         Navigator.push(
@@ -35,6 +34,7 @@ class Workouts extends StatelessWidget {
                         );
                       },
                       leading: Text(workouts[index].name),
+                      trailing: const Icon(Icons.keyboard_arrow_right_rounded, size: 30),
                     ),
                   )),
         ),
