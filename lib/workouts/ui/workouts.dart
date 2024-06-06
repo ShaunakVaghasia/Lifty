@@ -19,24 +19,38 @@ class Workouts extends StatelessWidget {
         ValueListenableBuilder(
           valueListenable: workoutsAdapter.workoutsNotifier,
           builder: (context, List<WorkoutInfo> workouts, child) => ListView.builder(
-              itemCount: workouts.length,
-              itemBuilder: (context, index) => Card(
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WorkoutSettings(
-                              workoutInfo: workouts[index],
-                              workoutsCore: workoutsCore,
-                            ),
+            itemCount: workouts.length,
+            itemBuilder: (context, index) => Card(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.08,
+                child: Center(
+                  child: ListTile(
+                    title: Text(workouts[index].name),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WorkoutSettings(
+                            workoutInfo: workouts[index],
+                            workoutsCore: workoutsCore,
                           ),
-                        );
-                      },
-                      leading: Text(workouts[index].name),
-                      trailing: const Icon(Icons.keyboard_arrow_right_rounded, size: 30),
+                        ),
+                      );
+                    },
+                    leading: Container(
+                      height: 40,
+                      width: 40,
+                      color: Colors.white,
+                      child: const Icon(
+                        Icons.fitness_center_rounded,
+                      ),
                     ),
-                  )),
+                    trailing: const Icon(Icons.keyboard_arrow_right_rounded, size: 30),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
         Align(
           alignment: Alignment.bottomRight,
