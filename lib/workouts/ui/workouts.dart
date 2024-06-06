@@ -1,6 +1,8 @@
 // Created by Shaunak Vaghasia
 
 import 'package:flutter/material.dart';
+import 'package:lifty/app/theme/color_palette.dart';
+import 'package:lifty/app/theme/ui_constants.dart';
 import 'package:lifty/storage/api/info/workout_info.dart';
 import 'package:lifty/workouts/adapter/workouts_adapter.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
@@ -21,10 +23,12 @@ class Workouts extends StatelessWidget {
           builder: (context, List<WorkoutInfo> workouts, child) => ListView.builder(
             itemCount: workouts.length,
             itemBuilder: (context, index) => Card(
+              color: ColorPalette.white,
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.08,
                 child: Center(
                   child: ListTile(
+                    tileColor: ColorPalette.white,
                     title: Text(workouts[index].name),
                     onTap: () {
                       Navigator.push(
@@ -38,9 +42,10 @@ class Workouts extends StatelessWidget {
                       );
                     },
                     leading: Container(
+                      decoration:
+                          BoxDecoration(borderRadius: UiConstants.roundedCorners, color: ColorPalette.deepPurple50),
                       height: 40,
                       width: 40,
-                      color: Colors.white,
                       child: const Icon(
                         Icons.fitness_center_rounded,
                       ),
