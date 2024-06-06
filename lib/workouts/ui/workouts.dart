@@ -30,6 +30,7 @@ class Workouts extends StatelessWidget {
                   child: ListTile(
                     tileColor: ColorPalette.white,
                     title: Text(workouts[index].name),
+                    subtitle: Text(UiConstants.dateFormatter(workouts[index].creationDate)),
                     onTap: () {
                       Navigator.push(
                         context,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UiConstants {
@@ -19,4 +20,29 @@ class UiConstants {
       EdgeInsets.fromLTRB(left, top, right, bottom);
 
   static BorderRadius roundedCorners = BorderRadius.circular(25);
+
+  // Dates
+  static int getDayFromTimestamp(Timestamp timestamp) => timestamp.toDate().day;
+  static int getMonthFromTimestamp(Timestamp timestamp) => timestamp.toDate().month;
+  static int getYearFromTimestamp(Timestamp timestamp) => timestamp.toDate().month;
+  static String getDayOfWeekFromTimestamp(Timestamp timestamp) {
+    final daysOfTheWeekMap = {
+      1: 'Monday',
+      2: 'Tuesday',
+      3: 'Wednesday',
+      4: 'Thursday',
+      5: 'Friday',
+      6: 'Saturday',
+      7: 'Sunday',
+    };
+    return daysOfTheWeekMap[timestamp.toDate().weekday] ?? emptyString;
+  }
+
+  static String dateFormatter(Timestamp timestamp) {
+    int day = getDayFromTimestamp(timestamp);
+    int month = getMonthFromTimestamp(timestamp);
+    int year = getYearFromTimestamp(timestamp);
+
+    return '$day/$month/$year';
+  }
 }
