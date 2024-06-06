@@ -35,7 +35,22 @@ class UiConstants {
       6: 'Saturday',
       7: 'Sunday',
     };
+
     return daysOfTheWeekMap[timestamp.toDate().weekday] ?? emptyString;
+  }
+
+  static bool isWithinCurrentWeek(Timestamp timestamp) {
+    DateTime now = DateTime.now();
+    DateTime previous = now.subtract(const Duration(days: 7));
+
+    if (timestamp.toDate().isAfter(previous) && timestamp.toDate().isBefore(now)) {
+      return true;
+    }
+
+    // List<Map<String, dynamic>> days =
+    //     List.generate(7, (index) => {'label': weekdayNames[index], 'day': now.day - monOffset + index});
+
+    return false;
   }
 
   static String dateFormatter(Timestamp timestamp) {
