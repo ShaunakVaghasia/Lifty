@@ -28,8 +28,8 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
   // Controllers
   late final TextEditingController nameController =
       TextEditingController(text: widget.workoutInfo?.name ?? UiConstants.emptyString);
-  late final TextEditingController dateController =
-      TextEditingController(text: DateHelper.dateFormatter(widget.workoutInfo?.date ?? Timestamp.now()));
+
+  late final ValueNotifier<DateTime> _selectedDate = ValueNotifier(widget.workoutInfo?.date.toDate() ?? DateTime.now());
 
   @override
   void dispose() {
@@ -164,27 +164,30 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
               //     },
               //   ),
               // ),
-              TextField(
-                onTap: () async {
-                  final newDate = await showDatePicker(
-                    context: context,
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime.now(),
-                    initialDate: widget.workoutInfo?.date.toDate() ?? DateTime.now(),
-                    currentDate: widget.workoutInfo?.date.toDate() ?? DateTime.now(),
-                  );
-                  dateController.text = DateHelper.dateFormatter(Timestamp.fromDate(newDate ?? DateTime.now()));
-                },
-                controller: dateController,
-                readOnly: true,
-                decoration: InputDecoration(
-                  filled: true,
-                  label: const Text(AppStrings.tags),
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: UiConstants.roundedCorners,
-                    borderSide: const BorderSide(color: Colors.white, width: 4),
-                  ),
+              ValueListenableBuilder(
+                valueListenable: _selectedDate,
+                builder: (context, DateTime date, child) => ElevatedButton(
+                  child: Text(DateHelper.dateFormatter(Timestamp.fromDate(date))),
+                  onPressed: () async {
+                    final newDate = await showDatePicker(
+                      context: context,
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime.now(),
+                      initialDate: date,
+                      currentDate: date,
+                    );
+                    _selectedDate.value = newDate ?? DateTime.now();
+                  },
+                  // readOnly: true,
+                  // decoration: InputDecoration(
+                  //   filled: true,
+                  //   label: const Text(AppStrings.tags),
+                  //   fillColor: Colors.white,
+                  //   border: OutlineInputBorder(
+                  //     borderRadius: UiConstants.roundedCorners,
+                  //     borderSide: const BorderSide(color: Colors.white, width: 4),
+                  //   ),
+                  // ),
                 ),
               ),
               Padding(padding: UiConstants.spacer(bottom: 10)),
