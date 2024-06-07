@@ -164,6 +164,8 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
                       currentDate: date,
                     );
                     _selectedDate.value = newDate ?? DateTime.now();
+                    widget.workoutInfo?.date = Timestamp.fromDate(date);
+                    print(widget.workoutInfo?.date);
                   },
                   // readOnly: true,
                   // decoration: InputDecoration(

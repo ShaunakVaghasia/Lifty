@@ -31,9 +31,9 @@ class Workouts extends StatelessWidget {
                   child: ListTile(
                     tileColor: ColorPalette.white,
                     title: Text(workouts[index].name),
-                    subtitle: Text(DateHelper.isWithinCurrentWeek(workouts[index].creationDate)
-                        ? DateHelper.getDayOfWeekFromTimestamp(workouts[index].creationDate, isForDate: true)
-                        : DateHelper.dateFormatter(workouts[index].creationDate)),
+                    subtitle: Text(DateHelper.isWithinCurrentWeek(workouts[index].date)
+                        ? DateHelper.getDayOfWeekFromTimestamp(workouts[index].date, isForDate: true)
+                        : DateHelper.dateFormatter(workouts[index].date)),
                     onTap: () {
                       Navigator.push(
                         context,
