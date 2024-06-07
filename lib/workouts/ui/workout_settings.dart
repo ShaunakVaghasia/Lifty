@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lifty/app/theme/app_strings.dart';
 import 'package:lifty/app/theme/color_palette.dart';
 import 'package:lifty/app/theme/ui_constants.dart';
+import 'package:lifty/app/utils/date_helper.dart';
 import 'package:lifty/storage/api/info/workout_info.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
 import 'package:lifty/workouts/ui/create_workout.dart';
@@ -26,6 +28,8 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
   // Controllers
   late final TextEditingController nameController =
       TextEditingController(text: widget.workoutInfo?.name ?? UiConstants.emptyString);
+  late final TextEditingController dateController =
+      TextEditingController(text: DateHelper.dateFormatter(widget.workoutInfo?.date ?? Timestamp.now()));
 
   @override
   void dispose() {
@@ -45,6 +49,19 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
               id == null ? exercises.addAll(exercise) : exercises.update(id, (value) => exercise.values.first),
         ),
       );
+
+  // _showDatePicker(DateTime currentDate) => showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         final newDate = DatePickerDialog(
+  //           firstDate: DateTime(1969, 1, 1, 11, 33),
+  //           lastDate: DateTime.now(),
+  //           initialDate: currentDate,
+  //         );
+  //         dateController.text =  DateHelper.dateFormatter(Timestamp.fromDate(newDate.))
+  //         return newDate;
+  //       },
+  //     );
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -147,6 +164,30 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
               //     },
               //   ),
               // ),
+              TextField(
+                onTap: () async {
+                  final newDate = await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime.now(),
+                    initialDate: widget.workoutInfo?.date.toDate() ?? DateTime.now(),
+                    currentDate: widget.workoutInfo?.date.toDate() ?? DateTime.now(),
+                  );
+                  dateController.text = DateHelper.dateFormatter(Timestamp.fromDate(newDate ?? DateTime.now()));
+                },
+                controller: dateController,
+                readOnly: true,
+                decoration: InputDecoration(
+                  filled: true,
+                  label: const Text(AppStrings.tags),
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: UiConstants.roundedCorners,
+                    borderSide: const BorderSide(color: Colors.white, width: 4),
+                  ),
+                ),
+              ),
+              Padding(padding: UiConstants.spacer(bottom: 10)),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
