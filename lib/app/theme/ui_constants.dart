@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UiConstants {
@@ -20,7 +19,4 @@ class UiConstants {
       EdgeInsets.fromLTRB(left, top, right, bottom);
 
   static BorderRadius roundedCorners = BorderRadius.circular(25);
-
-  // TODO: Move to its own file?
-  // Dates
 }
