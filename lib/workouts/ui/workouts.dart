@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifty/app/theme/color_palette.dart';
 import 'package:lifty/app/theme/ui_constants.dart';
+import 'package:lifty/app/utils/date_helper.dart';
 import 'package:lifty/storage/api/info/workout_info.dart';
 import 'package:lifty/workouts/adapter/workouts_adapter.dart';
 import 'package:lifty/workouts/core/workouts_core_api.dart';
@@ -30,9 +31,9 @@ class Workouts extends StatelessWidget {
                   child: ListTile(
                     tileColor: ColorPalette.white,
                     title: Text(workouts[index].name),
-                    subtitle: Text(UiConstants.isWithinCurrentWeek(workouts[index].creationDate)
-                        ? UiConstants.getDayOfWeekFromTimestamp(workouts[index].creationDate, isForDate: true)
-                        : UiConstants.dateFormatter(workouts[index].creationDate)),
+                    subtitle: Text(DateHelper.isWithinCurrentWeek(workouts[index].creationDate)
+                        ? DateHelper.getDayOfWeekFromTimestamp(workouts[index].creationDate, isForDate: true)
+                        : DateHelper.dateFormatter(workouts[index].creationDate)),
                     onTap: () {
                       Navigator.push(
                         context,
