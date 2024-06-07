@@ -31,7 +31,7 @@ class Workouts extends StatelessWidget {
                     tileColor: ColorPalette.white,
                     title: Text(workouts[index].name),
                     subtitle: Text(UiConstants.isWithinCurrentWeek(workouts[index].creationDate)
-                        ? UiConstants.getDayOfWeekFromTimestamp(workouts[index].creationDate)
+                        ? UiConstants.getDayOfWeekFromTimestamp(workouts[index].creationDate, isForDate: true)
                         : UiConstants.dateFormatter(workouts[index].creationDate)),
                     onTap: () {
                       Navigator.push(
