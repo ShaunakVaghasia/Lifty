@@ -50,19 +50,6 @@ class _WorkoutSettingsState extends State<WorkoutSettings> {
         ),
       );
 
-  // _showDatePicker(DateTime currentDate) => showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         final newDate = DatePickerDialog(
-  //           firstDate: DateTime(1969, 1, 1, 11, 33),
-  //           lastDate: DateTime.now(),
-  //           initialDate: currentDate,
-  //         );
-  //         dateController.text =  DateHelper.dateFormatter(Timestamp.fromDate(newDate.))
-  //         return newDate;
-  //       },
-  //     );
-
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: ColorPalette.appBackgroundColor,
